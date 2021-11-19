@@ -1,8 +1,9 @@
 body {
     margin: 0;
     font-family: "Aileron";
-  }
-  
+  }  
+  /*start of sidebar codes*/
+
   .sidebar {
     margin: 0;
     padding: 0;
@@ -25,28 +26,6 @@ body {
   .iconlink :hover {
     color: #96A1A8;
   }
-
-
-  
-  .content{
-    position: fixed;
-    margin-left: 300px;
-    padding: 1px 16px;
-    height: 1000px;
-  }
-
-  .content{
-    position: fixed;
-    margin-left: 300;
-    padding: 5px 16px;
-    height: 1000px;
-    float: left;
-  }
-
-  .nameuser{
-    font-weight: bold;
-    font-size: xx-large;
-  }
   
   @media screen and (max-width: 700px) {
     .sidebar {
@@ -63,15 +42,6 @@ body {
       text-align: center;
       float: none;
     }
-  }
-
-  .avatar {
-      border-radius: 200%;
-      object-fit: cover;
-      width: 230px;
-      height: 230px;
-      float: left;
-      margin-right: 20;
   }
 
   .arrow {
@@ -122,3 +92,52 @@ body {
   .name:hover{
     color: #96A1A8;
   }
+
+/*end of sidebar codes*/
+
+  .content{
+    position: fixed;
+    margin-left: 270;
+    margin-top: 10;
+    padding: 15px 16px;
+    float: left;
+  }
+
+  .nameuser{
+    font-weight: bold;
+    font-size: xx-large;
+    margin-top:0;
+  }
+
+  .avatar {
+    border-radius: 200%;
+    object-fit: cover;
+    width: 230px;
+    height: 230px;
+    float: left;
+    margin-right: 20;
+}
+
+.iconprofile {
+  height: 15px;
+  width: auto;
+  margin-right: 5;
+}
+
+.button{
+  background-color: #00BBD1;
+  border: none;
+  color: FCF8F6;
+  padding: 10 20 10 20;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: "Aileron";
+}
+
+.button:hover{
+  background-color: #96A1A8;
+  color: white;
+}
