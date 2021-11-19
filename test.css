@@ -22,28 +22,10 @@ body {
     text-decoration: none;
   }
    
- 
   .iconlink :hover {
     color: #96A1A8;
   }
   
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: fixed;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
-  }
-  
-  @media screen and (max-width: 400px) {
-    .sidebar a {
-      text-align: center;
-      float: none;
-    }
-  }
-
   .arrow {
     height: 20px;
     width: auto;
@@ -61,8 +43,6 @@ body {
   .ars {
     height: 100px;
     width: auto;
-    margin-bottom: 20;
-    float: left;
   }
 
   .ars:hover  {
@@ -94,6 +74,74 @@ body {
   }
 
 /*end of sidebar codes*/
+
+/*beginning of breadcrumb code*/
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 2em;
+  color: #00BBD1;
+}
+
+li {
+  display: inline-block;
+  position: relative;
+  padding-right: 2em;
+  margin: 0;
+}
+  li:after {
+    content: '>';
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    width: 2em;
+    text-align: center;
+  }
+li:last-child {
+  font-weight: bold;
+}
+  li:last-child:after {
+    content: '';
+  }
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: #96A1A8;
+}
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Collapsed breadcrumbs */
+
+.collapsed li {
+  overflow: hidden;
+}
+  .collapsed li:after {
+    background: whitesmoke;
+    background: linear-gradient(90deg, whitesmoke 0%, white 35%);
+    padding-left: 1em;
+  }
+
+.collapsed a {
+  max-width: 2em;
+  transition: max-width 300ms ease-in-out;
+}
+  .collapsed a:hover,
+  .collapsed a:focus,
+  .collapsed li:hover a {
+    max-width: 1000px;
+  }
+  .collapsed li:hover:after {
+    padding-left: 0em;
+    background: transparent;
+  }
+
+/*end of breadcrumb code*/
+
+/* start of main content code*/
 
   .content{
     position: fixed;
