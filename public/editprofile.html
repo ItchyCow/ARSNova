@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="editprofile.css">
+        <title>
+          ARS Nova | Edit Profile
+        </title>
+        <link rel="shortcut icon" href="resources/icons/crap.png" /> 
+    </head>
+    <body>
+
+        <div class = "sidebar">
+            <a href ="#Home"><img src="resources/images/sidebar logo.png" class="ars"></a>
+            <div class="iconlink">
+                <a href = "#Users"><img src="resources/icons/group.png" class="iconnav"> Users<img src="resources/icons/right-arrow.png" class="arrow"></a>
+                <a href = "#Events"><img src="resources/icons/calendar.png" class="iconnav">Events<img src="resources/icons/right-arrow.png" class="arrow"></a>
+                <a href ="#Logout"><img src="resources/icons/logout.png" class="iconnav">Logout</a>
+            </div>
+
+            <div class="profile">
+                    <a href="profilepage.html">
+                        <img src = "resources/images/anakin.jpg" class = "profilepic">
+                        <p class="name">Anakin Skywalker
+                            <br>
+                            anakinskywalker@su.edu.ph
+                        </p>
+                    </a>
+            </div>
+        </div>
+        
+        <!-- Page content -->
+        <div class="main">
+        
+            <!-- Breadcrumbs of Pages-->
+
+            <ul class="collapsed">
+            <li><a href="#">Home</a></li>
+            <li><a href="profilepage.html">Profile</a></li>
+            <li>Edit Profile</li>
+            </ul>
+
+            <!-- Main Content -->
+            <h2  href="#home">Edit Profile</h2>
+            <p style = "color:#96A1A8">Update your photo and personal details here.</p>
+
+            <!--Profile Picture-->
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <label for="fileToUpload">
+              <div class="profile-pic" style="background-image: url('resources/images/anakin.jpg')">
+                  <div class="changeimage"><br><br>Change<br>Image</div>
+              </div>
+              </label>
+              <input type="File" name="fileToUpload" id="fileToUpload">
+            </form>
+
+            <br>
+            <b>Upload your photo</b>
+            <p style="color: #96A1A8; line-height: 0.7;">This will be displayed on your profile</p>
+    
+            <br><br>
+
+            <!-- Form Action Page (Where data will be stored)-->
+            <form action="/">
+                <br>
+                <label class="required">Username</label> 
+                &nbsp;&nbsp;&nbsp;
+                <input type="text" id="Username" name="Username" size="30">
+            
+                <br><br><br>
+
+                <p style="float: left; margin-right: 30;">Bio</p> 
+                &nbsp;
+                <textarea placeholder="Describe yourself." cols="40" rows="5"></textarea>
+
+                <br><br><br>
+
+                <label class="required">Year</label>
+                    <select name="Year">
+                        <option selected value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                    </select>
+
+                &nbsp; &nbsp; &nbsp; &nbsp;
+
+                <label class="required">Course</label>
+                    <select name="Course">
+                        <option selected value="BSIT">BSIT</option>
+                        <option value="BSCS">BSCS</option>
+                        <option value="BLIS">BLIS</option>
+                        <option value="BSIS">BSIS</option>
+                    </select>
+
+                <br><br><br>
+
+                <label class="required">Position</label>
+                    <select class="Position" name="Position" style="width:100px;">
+                        <option selected value="Governor">Governor</option>
+                        <option value="Vice Governor">Vice Governor</option>
+                        <option value="Secretary">Secretary</option>
+                        <option value="Treasurer">Treasurer</option>
+                        <option value="Auditor">Auditor</option>
+                        <option value="PRO">PRO</option>
+                    </select>
+
+            </form>
+
+            <br><br><br>
+
+            <button class="button">Save Changes</button>
+
+        </div>
+    </body>
+</html>
