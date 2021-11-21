@@ -98,6 +98,25 @@ button { /*design*/
     color: #96A1A8;
 }
 
+.altlogin span {
+    height: 1.25px;
+    width: 20%;
+    margin-top: 20px;
+
+    display: inline-block;
+    background-color: #96A1A8;
+}
+
+.gl1 {
+    margin-left: 100px;
+    float: left;
+}
+
+.gl2 {
+    margin-right: 100px;
+    float: right;
+}
+
 .altlogin a {
     margin-top: -50px;
 }
