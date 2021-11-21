@@ -1,6 +1,103 @@
-.body
-{
-    background-image: url('resources/images/background.png');
-    
-    min-height: 1000;
+html * {
+    font-family: 'Aileron' !important;
+    font-size: 30px !important;
+    color: #00BBD1;
+}
+
+body, html {
+    background-color: #00BBD1;
+    margin: 0px;
+}
+
+.bgm {
+    background-image: url("resources/images/background.png");
+    height:100%;
+
+    display: block;
+
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box {
+    border-radius: 50px;
+    background: white;
+    position: relative;
+
+    margin: auto;
+    top: 4.5%;
+    padding: 20px;
+    width: 750px;
+    height: 875px;
+}
+
+.header {
+    font-size: 70 !important;
+    font-weight: 900;
+
+    margin-top: 25px;
+    text-align: center;
+    letter-spacing: 10;
+}
+
+.inptstuff {
+    margin-top: -40px;
+}
+
+input[type=text], input[type=password], button { /*aligning, box design*/
+    display: block;
+    margin: 20px auto;
+    border-radius: 20px;
+
+    height: 100px;
+    width: 80%;
+    padding: 12px 20px;
+}
+
+::placeholder {
+    color: darkgray;
+}
+
+input[type=text], input[type=password] { /*design*/
+    background-color: whitesmoke;
+    color: black !important;
+
+    box-sizing: border-box;
+    border: none;
+}
+
+button { /*design*/
+    margin: 35px auto;
+
+    background-color: #00BBD1;
+    color: #FCF8F6 !important;
+    border: none;
+    cursor: pointer;
+}
+
+.forgot {
+    margin-top: 120px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.forgot a{
+    text-decoration: none;
+}
+
+.altlogin {
+    height: 50px;
+    text-align: center;
+}
+
+.altlogin p {
+    margin-top: 50px;
+    font-weight: 700;
+    color: #96A1A8;
+}
+
+.altlogin a {
+    margin-top: -50px;
 }
