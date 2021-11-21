@@ -1,0 +1,55 @@
+.lock{
+    text-align: center;
+
+    margin-top: 30px;
+}
+
+.header {
+    font-size: 50px !important;
+    letter-spacing: 3px !important;
+
+    margin-top: 60px;
+}
+
+.subtext {
+    text-align: center;
+    font-size: 20px;
+    color: #96A1A8;
+    opacity: 0.8;
+}
+
+input[type=text], button { /*aligning, box design*/
+    display: block;
+    border-radius: 20px;
+
+    height: 100px;
+    width: 80%;
+    padding: 12px 20px;
+}
+
+::placeholder {
+    color: darkgray;
+}
+
+input[type=text] { /*design*/
+    margin: 35px auto;
+
+    background-color: whitesmoke;
+    color: black !important;
+
+    box-sizing: border-box;
+    border: none;
+}
+
+button { /*design*/
+    margin: -20px auto;
+
+    background-color: #00BBD1;
+    color: #FCF8F6 !important;
+    border: none;
+    cursor: pointer;
+}
+
+.altlogin {
+    margin-top: 71px;
+}

@@ -1,0 +1,87 @@
+html * {
+    font-family: 'Aileron' !important;
+    font-size: 30px;
+    color: #00BBD1;
+}
+
+body, html {
+    background-color: #00BBD1;
+    margin: 0px;
+}
+
+.bgm {
+    background-image: url("resources/images/background.png");
+    height:100%;
+
+    display: block;
+
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box { /*BOX STUFF IMPORTANT*/
+    border-radius: 50px;
+    background: white;
+    position: relative;
+
+    margin: auto;
+    top: 4.5%;
+    padding: 20px;
+    width: 750px;
+    height: 875px;
+}
+
+.header {
+    font-size: 70 !important;
+    font-weight: 900;
+
+    margin-top: 25px;
+    text-align: center;
+    letter-spacing: 10;
+}
+
+.forgot {
+    margin-top: 120px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.forgot a{
+    text-decoration: none;
+}
+
+.altlogin {
+    height: 50px;
+    text-align: center;
+}
+
+.altlogin p {
+    margin-top: 50px;
+    font-weight: 700;
+    color: #96A1A8;
+}
+
+.altlogin span {
+    height: 1.25px;
+    width: 20%;
+    margin-top: 20px;
+
+    display: inline-block;
+    background-color: #96A1A8;
+}
+
+.gl1 {
+    margin-left: 75px;
+    float: left;
+}
+
+.gl2 {
+    margin-right: 75px;
+    float: right;
+}
+
+.altlogin a {
+    margin-top: -50px;
+}

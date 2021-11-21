@@ -1,0 +1,98 @@
+body, html {
+    background-color: whitesmoke;
+    margin: 0px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.homepage {
+    height: 100%;
+    width: 750px;
+    margin: auto;
+
+    text-align: center;
+    position: relative;
+}
+
+.subtitle {
+    color: #646464;
+    font-weight: 700;
+    font-size: 25px;
+
+    margin-top: -40px;
+}
+
+.profile {
+    text-align: center;
+    width: 80%;
+    height: 150px;
+    margin: auto;
+    margin-left: 130px;
+
+    margin-top: 100px;
+}
+
+.profpic {
+    border-radius: 50%;
+
+    object-position: 50% 0%;
+    object-fit: cover;
+    width: 125px;
+    height: 125px;
+
+    float: left;
+}
+
+.profdetails{
+    float: right;
+    height: inherit;
+    width: 77%;
+
+    text-align: left;
+}
+
+.profname {
+    display: inline-block;
+
+    color: black;
+    font-weight: 900;
+}
+
+.profemail {
+    margin-top: -30px;
+    display: inline-block;
+
+    color: #96A1A8;
+    font-size: 15px;
+}
+
+.enubuttons {
+    margin-top: 200px;
+}
+
+.enubuttons img, .enubuttons p {
+    display: inline-block;
+}
+
+.enubuttons p {
+    font-size: 20px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+    margin-top: 0px;
+}
+
+.userlist p{
+    margin-top: -5px;
+}
+
+.eventlist, .userlist {
+    width: 40%;
+    display: inline-block;
+}
+
+.logout {
+    margin-top: 50px;
+}
