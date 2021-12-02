@@ -1,0 +1,207 @@
+body {
+    margin: 0;
+    font-family: "Aileron";
+  }  
+  /*start of sidebar codes*/
+
+  .sidebar {
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  .sidebar a {
+    display: block;
+    font-weight: bold;
+    color: #00BBD1;
+    padding: 16px;
+    text-decoration: none;
+  }
+   
+  .iconlink :hover {
+    color: #96A1A8;
+  }
+  
+  .arrow {
+    height: 20px;
+    width: auto;
+    margin-left: 20;
+    float: right;
+  }
+
+  .iconnav {
+    height: 20px;
+    width: auto;
+    margin-right: 20;
+    float: left;
+  }
+
+  .ars {
+    height: 100px;
+    width: auto;
+  }
+
+  .ars:hover  {
+    -webkit-filter: drop-shadow(12px 12px 25px #96A1A8);
+    filter: drop-shadow(2px 2px 10px #96A1A8);
+  }
+
+  .profilepic {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin: 0 0 50 -5;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .name {
+    font-size: small;
+    margin: 0 0 60 50;
+    position: fixed;
+    bottom: 0;
+    font-weight: lighter;
+  }
+
+  .name:hover{
+    color: #96A1A8;
+  }
+
+/*end of sidebar codes*/
+
+/*beginning of breadcrumb code*/
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 2em;
+  color: #00BBD1;
+}
+
+li {
+  display: inline-block;
+  position: relative;
+  padding-right: 2em;
+  margin: 0;
+}
+  li:after {
+    content: '>';
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    width: 2em;
+    text-align: center;
+  }
+li:last-child {
+  font-weight: bold;
+}
+  li:last-child:after {
+    content: '';
+  }
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: #96A1A8;
+}
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Collapsed breadcrumbs */
+
+.collapsed li {
+  overflow: hidden;
+}
+  .collapsed li:after {
+    background: whitesmoke;
+    background: linear-gradient(90deg, whitesmoke 0%, white 35%);
+    padding-left: 1em;
+  }
+
+.collapsed a {
+  max-width: 2em;
+  transition: max-width 300ms ease-in-out;
+}
+  .collapsed a:hover,
+  .collapsed a:focus,
+  .collapsed li:hover a {
+    max-width: 1000px;
+  }
+  .collapsed li:hover:after {
+    padding-left: 0em;
+    background: transparent;
+  }
+
+/*end of breadcrumb code*/
+
+/* start of main content code*/
+  h2 {
+    margin-bottom: 0;
+  }
+  
+  p {
+    margin-top : 1%; 
+    padding-top:0;
+  }
+    /* Style page content */
+    .main {
+      margin-left: 270px; /* Same as the width of the sidebar */
+      padding: 2px 10px;
+    }
+    
+    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    
+    
+    input[type="text"]
+    {
+        border: 0;
+        border-bottom: 2px solid #96A1A8;
+        outline: 0;
+    }
+  
+    select {
+      border: 0;
+      border-bottom: 2px solid #96A1A8;
+      outline: 0;
+      height: 20px;
+      flex: 0 0 200px;
+      margin-left: 15px;
+      width: 60px
+    }
+  
+   
+  .required:after {
+    content:" *";
+    color: #00BBD1;
+  }
+  
+.button {
+  background-color: #00BBD1;
+  border: none;
+  color: FCF8F6;
+  padding: 10 20 10 20;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: "Aileron";
+
+}
+
+.button:hover{
+  background-color: #96A1A8;
+  color: white;
+}
+/* End of Main Content Code */

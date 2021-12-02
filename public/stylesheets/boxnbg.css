@@ -10,7 +10,7 @@ body, html {
 }
 
 .bgm {
-    background-image: url("resources/images/background.png");
+    background-image: url("../resources/images/background.png");
     height:100%;
 
     display: block;
