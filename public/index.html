@@ -14,15 +14,16 @@
 
                 <p class="header">ARS NOVA</p>
 
-                <form id="login-form" class="inptstuff" action="homepage.html" method="post">
+                <form id="login-form" class="login" action="homepage.html" method="post">
                     <input type="text" placeholder="Email or Username" name="email" required>
-                    <input type="password" placeholder="Password" name="psw" required>
+                    <input id="pwfield" type="password" placeholder="Password" name="psw" required>
                     
-                    <button type="submit">Sign In</button>
-
+                    <input type="submit" value="Sign In">
                 </form>
 
-                <div class="forgot">
+                <div id="incorrect" class="errmsg"></div>
+
+                <div class="forgot" style="margin-top: 85px;">
                     <a href="trouble.html">Forgot Password?</a>
                 </div>
 
@@ -30,9 +31,11 @@
                     <p><span class="gl1"></span>Or Sign In Using<span class="gl2"></span></p>
                     <a href=""><img src="resources/images/google.png" style="height: 60px; width: 60px;"></a>
                 </div>
+
+                <div class = "logout">test logout button</div>
             </div>
         </div>
 
-        
+        <script src="bundle.js"></script>
     </body>
 </html>

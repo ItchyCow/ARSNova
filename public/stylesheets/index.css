@@ -1,8 +1,8 @@
-.inptstuff {
+.login {
     margin-top: -40px;
 }
 
-input[type=text], input[type=password], button { /*aligning, box design*/
+input[type=text], input[type=password], input[type=submit] { /*aligning, box design*/
     display: block;
     margin: 20px auto;
     border-radius: 20px;
@@ -24,7 +24,7 @@ input[type=text], input[type=password] { /*design*/
     border: none;
 }
 
-button { /*design*/
+input[type=submit] { /*design*/
     margin: 35px auto;
 
     background-color: #00BBD1;
