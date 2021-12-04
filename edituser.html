@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="editevent.css">
+        <title>
+          ARS Nova | Edit Event
+      </title>
+      <link rel="shortcut icon" href="head logo.png" /> 
+    </head>
+    <body>
+        
+        <div class = "sidebar">
+            <a href ="#Home"><img src="resources/images/sidebar logo.png" class="ars"></a>
+            <div class="iconlink">
+                <a href = "#Users"><img src="resources/icons/group.png" class="iconnav"> Users<img src="resources/icons/right-arrow.png" class="arrow"></a>
+                <a href = "#Events"><img src="resources/icons/calendar.png" class="iconnav">Events<img src="resources/icons/right-arrow.png" class="arrow"></a>
+                <a href ="#Logout"><img src="resources/icons/logout.png" class="iconnav">Logout</a>
+            </div>
+
+            <div class="profile">
+                <a href="profilepage.html">
+                    <img src = "resources/images/anakin.jpg" class = "profilepic">
+                    <p class="name">Anakin Skywalker
+                            <br>
+                            anakinskywalker@su.edu.ph
+                        </p>
+                    </a>
+            </div>
+        </div>
+        
+        <!-- Page content -->
+  <div class="main">
+    <!-- Breadcrumbs of Pages-->
+    <ul class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Users</a></li>
+      <li><a href="#">Anakin Skywalker</a></li>
+      <li>Edit Details</li>
+    </ul>
+    <!-- Main Content -->
+    <h2  href="#home">User Details</h2>
+    <p style = "color:#96A1A8">Update user details here</p>
+
+    <!-- Event Name Accessed from Database-->
+    <h3 href="#">Anakin Skywalker</h3><br>
+  
+    <!-- Form Action Page (Where data will be stored)-->
+    <form action="/">
+
+      <label class="required">Type of User</label>
+        <!-- Hour List-->
+        <select class="Type of User" name="Type of User" style="width:100px;">
+          <option selected value="Regular">Regular</option>
+          <option value="Admin">Admin</option>
+         </select><br><br><br><br>
+         
+        &nbsp;&nbsp;&nbsp;&nbsp;<label class="required">Incentives </label> 
+         &nbsp;&nbsp;&nbsp;
+         <input type="text" id="Incentives" name="Incentives" size="10"><br><br><br>
+      
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="required">Balance </label><br><br><br>
+
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="required">Status</label>
+        <!-- Hour List-->
+        <select class="Status" name="Status" style="width:125px;">
+          <option selected value="NOT CLEARED">NOT CLEARED</option>
+          <option value="CLEARED">CLEARED</option>
+        </select>
+
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <br><br><br>
+  </form>
+
+    <button class="button" style="position: absolute; right: 70;">Save Changes</button>
+
+  </div>
+
+        
+    </body>
+</html>
