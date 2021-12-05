@@ -30,6 +30,7 @@ initializeApp(firebaseConfig)
 const db = getFirestore()
 const auth = getAuth()
 
+var userID
 const loginForm = document.querySelector('.login')
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -45,21 +46,40 @@ loginForm.addEventListener('submit', (e) => {
                 console.log(err.message)
         })
         .then((cred) => {
-            console.log('user logged in', cred.user)
-            window.location = 'homepage.html'
+            userID = cred.user.uid
+            checkAuthority()
         })
+})
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        userID = user.uid
+        checkAuthority()
+    }
+    else {
+        console.log('user not signed in')
+    }
 })
 
 function displayIncorrect() {
     document.getElementById('incorrect').innerHTML = "Sorry, your password was incorrect. Please double-check your password."
 }
 
-var userID
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        window.location = 'homepage.html'
-    }
-    else {
-        console.log('user not signed in')
-    }
-})
+function displayNoAuth() {
+    document.getElementById('incorrect').innerHTML = "Only Admin-type users may sign in!"
+    loginForm.reset() 
+}
+
+function checkAuthority() {
+    const dataRef = doc(db, 'user', userID)
+    onSnapshot(dataRef, (doc) => {
+        if (doc.data().type === 'admin') {
+            window.location = 'homepage.html'
+        } else {
+            signOut(auth)
+                .then(() => {
+                    displayNoAuth()
+                })
+        }
+    })
+}
