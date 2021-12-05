@@ -30,36 +30,30 @@ initializeApp(firebaseConfig)
 const db = getFirestore()
 const auth = getAuth()
 
-const loginForm = document.querySelector('.login')
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    const email = loginForm.email.value
-    const password = loginForm.psw.value
-
-    signInWithEmailAndPassword(auth, email, password)
-        .catch((err) => {
-            if (err.code === 'auth/wrong-password')
-                displayIncorrect()
-            else
-                console.log(err.message)
-        })
-        .then((cred) => {
-            console.log('user logged in', cred.user)
-            window.location = 'homepage.html'
-        })
-})
-
-function displayIncorrect() {
-    document.getElementById('incorrect').innerHTML = "Sorry, your password was incorrect. Please double-check your password."
-}
-
 var userID
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        window.location = 'homepage.html'
+        userID = user.uid
+        console.log('user status changed:', userID)
+        const dataRef = doc(db, 'data', userID)
+        onSnapshot(dataRef, (doc) => {
+            console.log(doc.data(), doc.id)
+        })
     }
     else {
+        window.location = 'index.html'
         console.log('user not signed in')
     }
+})
+
+const logoutButton = document.querySelector('.lobtn')
+logoutButton.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            console.log('user signed out');
+            window.location = 'index.html'
+        })
+        .catch(err => {
+            console.log(err)
+        })
 })
