@@ -13,6 +13,7 @@ import {
     onAuthStateChanged
 } from 'firebase/auth'
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyBMjNRz6ccicva3bAuQ07MN-xniNSCk0_A",
     authDomain: "ccs6-b084d.firebaseapp.com",
@@ -35,9 +36,10 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid
         console.log('user status changed:', userID)
-        const dataRef = doc(db, 'data', userID)
+        const dataRef = doc(db, 'user', userID)
         onSnapshot(dataRef, (doc) => {
-            console.log(doc.data(), doc.id)
+            document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname
+            document.getElementById('profemail').innerHTML = user.email
         })
     }
     else {
