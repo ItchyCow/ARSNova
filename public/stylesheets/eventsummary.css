@@ -1,0 +1,258 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
+body {
+    margin: 0;
+    font-family: "Aileron";
+  }  
+  /*start of sidebar codes*/
+  .sidebar {
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  .sidebar a {
+    display: block;
+    font-weight: bold;
+    color: #00BBD1;
+    padding: 16px;
+    text-decoration: none;
+  }
+   
+  .iconlink :hover {
+    color: #96A1A8;
+  }
+  
+  .arrow {
+    height: 20px;
+    width: auto;
+    margin-left: 20;
+    float: right;
+  }
+
+  .iconnav {
+    height: 20px;
+    width: auto;
+    margin-right: 20;
+    float: left;
+  }
+
+  .ars {
+    height: 100px;
+    width: auto;
+  }
+
+  .ars:hover  {
+    -webkit-filter: drop-shadow(12px 12px 25px #96A1A8);
+    filter: drop-shadow(2px 2px 10px #96A1A8);
+  }
+
+  .profilepic {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin: 0 0 50 -5;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .name {
+    font-size: small;
+    margin: 0 0 60 50;
+    position: fixed;
+    bottom: 0;
+    font-weight: lighter;
+  }
+
+  .name:hover{
+    color: #96A1A8;
+  }
+
+/*end of sidebar codes*/
+
+/*beginning of breadcrumb code*/
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 2em;
+  color: #00BBD1;
+}
+
+li {
+  display: inline-block;
+  position: relative;
+  padding-right: 2em;
+  margin: 0;
+}
+  li:after {
+    content: '>';
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    width: 2em;
+    text-align: center;
+  }
+li:last-child {
+  font-weight: bold;
+}
+  li:last-child:after {
+    content: '';
+  }
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: #96A1A8;
+}
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Collapsed breadcrumbs */
+
+.collapsed li {
+  overflow: hidden;
+}
+  .collapsed li:after {
+    background: whitesmoke;
+    background: linear-gradient(90deg, whitesmoke 0%, white 35%);
+    padding-left: 1em;
+  }
+
+.collapsed a {
+  max-width: 2em;
+  transition: max-width 300ms ease-in-out;
+}
+  .collapsed a:hover,
+  .collapsed a:focus,
+  .collapsed li:hover a {
+    max-width: 1000px;
+  }
+  .collapsed li:hover:after {
+    padding-left: 0em;
+    background: transparent;
+  }
+
+/*end of breadcrumb code*/
+
+/* start of main content code*/
+  h2 {
+    margin-bottom: 0;
+  }
+  
+  p {
+    margin-top : 1%; 
+    padding-top:0;
+  }
+    /* Style page content */
+    .main {
+      margin-left: 270px; /* Same as the width of the sidebar */
+      padding: 2px 10px;
+    }
+    
+    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    
+/* Search box*/    
+#wrap {
+  margin: 2px 0px;
+  display: inline-block;
+  position: absolute;
+  top: 10%;
+  height: 10px;
+  float: left;
+  padding: 0;
+  position: absolute;
+}
+
+input[type="text"] {
+  height: 30px;
+  font-size: 15px;
+  display: inline-block;
+  font-family: "Lato";
+  font-weight: 100;
+  border: none;
+  outline: none;
+  color: #555;
+  padding: 3px;
+  padding-left: 50;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: none;
+  z-index: 3;
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  cursor: pointer;
+}
+
+input[type="text"]:focus:hover {
+  border-bottom: 1px solid #BBB;
+}
+
+input[type="text"]:focus {
+  width: 700px;
+  z-index: 1;
+  border-bottom: 1px solid #BBB;
+  cursor: text;
+}
+
+input[type="submit"] {
+  height: 28px;
+  width: 33px;
+  display: inline-block;
+  color:red;
+  float: left;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRFU1NT9fX1lJSUXl5e1dXVfn5+c3Nz6urqv7+/tLS0iYmJqampn5+fysrK39/faWlp////Vi4ZywAAABF0Uk5T/////////////////////wAlrZliAAABLklEQVR42rSWWRbDIAhFHeOUtN3/ags1zaA4cHrKZ8JFRHwoXkwTvwGP1Qo0bYObAPwiLmbNAHBWFBZlD9j0JxflDViIObNHG/Do8PRHTJk0TezAhv7qloK0JJEBh+F8+U/hopIELOWfiZUCDOZD1RADOQKA75oq4cvVkcT+OdHnqqpQCITWAjnWVgGQUWz12lJuGwGoaWgBKzRVBcCypgUkOAoWgBX/L0CmxN40u6xwcIJ1cOzWYDffp3axsQOyvdkXiH9FKRFwPRHYZUaXMgPLeiW7QhbDRciyLXJaKheCuLbiVoqx1DVRyH26yb0hsuoOFEPsoz+BVE0MRlZNjGZcRQyHYkmMp2hBTIzdkzCTc/pLqOnBrk7/yZdAOq/q5NPBH1f7x7fGP4C3AAMAQrhzX9zhcGsAAAAASUVORK5CYII=) center center no-repeat;
+  background-size: 30px 30px;
+  text-indent: -10000px;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity .4s ease;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+}
+/*end of Search box*/  
+
+  .required:after {
+    content:" *";
+    color: #00BBD1;
+  }
+  
+.button {
+  background-color: #00BBD1;
+  border: none;
+  color: FCF8F6;
+  padding: 10 20 10 20;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: "Aileron";
+
+}
+
+.button:hover{
+  background-color: #96A1A8;
+  color: white;
+}
+/* End of Main Content Code */
