@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
 import {
     getFirestore, collection, onSnapshot,
     addDoc, deleteDoc, doc,
@@ -24,6 +24,7 @@ initializeApp(firebaseConfig)
 
 //init services
 const db = getFirestore()
+const storage = getStorage()
 
 // collection ref
 const colRef = collection(db, 'event')
@@ -56,19 +57,30 @@ addEventForm.addEventListener('submit', (e) => {
     })
 })
 
-// index.js -> bundle.js
-var QRCode = require('qrcode')
-var canvas = document.getElementById('qrcode')
+function uploadQR(event_id) {
+    var QRCode = require('qrcode')
+    var location = "qrcodes/"+ event_id
+    console.log(location)
+    var storageRef = ref(storage, location)
 
-QRCode.toCanvas(canvas, 'TestingTesting123', function (error) {
-  if (error) console.error(error)
-  console.log(QRCode);
-})
+    QRCode.toDataURL(event_id, {version: 2}, function (err, url) {
+        console.log(url);
+        uploadString(storageRef, url, 'data_url').then((snapshot) => {
+            console.log("Success")
+        })
+    })
+    
+}
 
-const storage = getStorage()
-const storageRef = ref(storage, 'images/test')
+function getProfileImageUrl(user_id) {
+    var location = "images/"+ user_id
+    getDownloadURL(ref(storage, location)).then((url) => {
+        return url
 
-uploadBytes(storageRef, 'resources/images/anakin.jpg').then((snapshot) => {
-  console.log('Success for Image!')
-})
+    })
+
+}
+
+uploadQR("Hello world hi there")
+document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
 
