@@ -7,7 +7,8 @@ module.exports = {
     homepage: './public/src/homepage.js',
     trouble: './public/src/trouble.js',
     editprofile: './public/src/editprofile.js',
-    profilepage: './public/src/profilepage.js'
+    profilepage: './public/src/profilepage.js',
+    eventsummary: './public/src/eventsummary.js'
   },
   output: {
     path: path.resolve(__dirname, 'public/bundles'),
