@@ -100,13 +100,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./public/src/homepage.js":
-/*!********************************!*\
-  !*** ./public/src/homepage.js ***!
-  \********************************/
+/***/ "./public/src/editprofile.js":
+/*!***********************************!*\
+  !*** ./public/src/editprofile.js ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.esm.js\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/firestore */ \"./node_modules/firebase/firestore/dist/index.esm.js\");\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ \"./node_modules/firebase/auth/dist/index.esm.js\");\n\r\n\r\n\r\n\r\n\r\nconst firebaseConfig = {\r\n    apiKey: \"AIzaSyBMjNRz6ccicva3bAuQ07MN-xniNSCk0_A\",\r\n    authDomain: \"ccs6-b084d.firebaseapp.com\",\r\n    projectId: \"ccs6-b084d\",\r\n    storageBucket: \"ccs6-b084d.appspot.com\",\r\n    messagingSenderId: \"741143261047\",\r\n    appId: \"1:741143261047:web:42557543c4d2a0cf0c7b72\",\r\n    measurementId: \"G-KQ9QHRVZLG\"\r\n};\r\n\r\n//init firebase app\r\n(0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig)\r\n\r\n//init services\r\nconst db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)()\r\nconst auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.getAuth)()\r\n\r\nvar userID\r\n;(0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.onAuthStateChanged)(auth, (user) => {\r\n    if (user) {\r\n        userID = user.uid\r\n        console.log('user status changed:', userID)\r\n        const dataRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'user', userID)\r\n        ;(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(dataRef, (doc) => {\r\n            document.getElementById('profname').innerHTML = doc.data().fname + \" \" + doc.data().lname\r\n            document.getElementById('profemail').innerHTML = user.email\r\n        })\r\n    }\r\n    else {\r\n        window.location = 'index.html'\r\n        console.log('user not signed in')\r\n    }\r\n})\r\n\r\nconst logoutButton = document.querySelector('.lobtn')\r\nlogoutButton.addEventListener('click', () => {\r\n    ;(0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signOut)(auth)\r\n        .then(() => {\r\n            console.log('user signed out');\r\n            window.location = 'index.html'\r\n        })\r\n        .catch(err => {\r\n            console.log(err)\r\n        })\r\n})\n\n//# sourceURL=webpack://arsnova/./public/src/homepage.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/index.esm.js\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/firestore */ \"./node_modules/firebase/firestore/dist/index.esm.js\");\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ \"./node_modules/firebase/auth/dist/index.esm.js\");\n\r\n\r\n\r\n\r\n  //init firebase app\r\n(0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig)\r\n\r\n//init services\r\nconst db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)()\r\nconst auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.getAuth)()\r\n\r\n//collection ref\r\nconst colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, 'user')\r\n\r\n//real time collection data\r\n;(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(colRef, (snapshot) => {\r\n    let user = []\r\n    snapshot.docs.forEach((doc) => {\r\n        user.push({ ...doc.data(), id: doc.id})\r\n    })\r\n    console.log(user)\r\n})\r\n\r\n/*updating a document\r\nconst updateForm = document.querySelector('.update')\r\nupdateForm.addEventListener('submit', (e) => {\r\n    e.preventDefault()\r\n\r\n    const docRef = doc(db, 'user', updateForm.id.value)\r\n})*/\r\n\r\nfunction writeNewPost(bio, course, position, year_level) {\r\n      \r\n    // A post entry.\r\n    const postData = {\r\n      bio: bio,\r\n      course: course,\r\n      position: position,\r\n      year_level: year_level\r\n    };\r\n  \r\n    // Get a key for a new Post.\r\n    const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'user', updateForm.id.value)\r\n  \r\n    return update(ref(db), updates);\r\n}\n\n//# sourceURL=webpack://arsnova/./public/src/editprofile.js?");
 
 /***/ }),
 
@@ -212,7 +212,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./public/src/homepage.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./public/src/editprofile.js");
 /******/ 	
 /******/ })()
 ;
