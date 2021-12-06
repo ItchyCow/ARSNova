@@ -8,7 +8,8 @@ module.exports = {
     trouble: './public/src/trouble.js',
     editprofile: './public/src/editprofile.js',
     profilepage: './public/src/profilepage.js',
-    eventsummary: './public/src/eventsummary.js'
+    eventsummary: './public/src/eventsummary.js',
+    addevent: './public/src/addevent.js'
   },
   output: {
     path: path.resolve(__dirname, 'public/bundles'),
