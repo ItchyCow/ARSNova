@@ -3,7 +3,6 @@ body {
     font-family: "Aileron";
   }  
   /*start of sidebar codes*/
-
   .sidebar {
     margin: 0;
     padding: 0;
@@ -162,111 +161,72 @@ a {
       .sidenav a {font-size: 18px;}
     }
     
-    
-    input[type="text"]
-    {
-        border: 0;
-        border-bottom: 2px solid #96A1A8;
-        outline: 0;
-    }
-  
-    select {
-      border: 0;
-      border-bottom: 2px solid #96A1A8;
-      outline: 0;
-      height: 20px;
-      flex: 0 0 200px;
-      margin-left: 15px;
-      width: 60px
-    }
-  
-   
-  .required:after {
-    content:" *";
-    color: #00BBD1;
-  }
-  
-.button {
-  background-color: #00BBD1;
+/* Search box*/    
+#wrap {
+  margin: 2px 0px;
+  display: inline-block;
+  position: absolute;
+  top: 9%;
+  height: 10px;
+  float: none;
+  padding: 0;
+  position: absolute;
+}
+
+input[type="text"] {
+  height: 30px;
+  font-size: 15px;
+  display: inline-block;
+  font-weight: 100;
   border: none;
-  color: FCF8F6;
-  padding: 10 20 10 20;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
+  outline: none;
+  color: rgb(138, 138, 138);
+  padding: 3px;
+  padding-left: 50;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: none;
+  z-index: 3;
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
   cursor: pointer;
-  border-radius: 4px;
-  font-family: "Aileron";
-
 }
 
-.button:hover{
-  background-color: #96A1A8;
-  color: white;
+input[type="text"]:focus:hover {
+  border-bottom: 1px solid #BBB;
 }
-/* End of Main Content Code */
 
-/* for time */
-input[type=time] {
+input[type="text"]:focus {
+  width: 700px;
+  z-index: 1;
+  border-bottom: 1px solid #BBB;
+  cursor: text;
+}
+
+input[type="submit"] {
+  height: 28px;
+  width: 33px;
+  display: inline-block;
+  color:red;
+  float: none;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRFU1NT9fX1lJSUXl5e1dXVfn5+c3Nz6urqv7+/tLS0iYmJqampn5+fysrK39/faWlp////Vi4ZywAAABF0Uk5T/////////////////////wAlrZliAAABLklEQVR42rSWWRbDIAhFHeOUtN3/ags1zaA4cHrKZ8JFRHwoXkwTvwGP1Qo0bYObAPwiLmbNAHBWFBZlD9j0JxflDViIObNHG/Do8PRHTJk0TezAhv7qloK0JJEBh+F8+U/hopIELOWfiZUCDOZD1RADOQKA75oq4cvVkcT+OdHnqqpQCITWAjnWVgGQUWz12lJuGwGoaWgBKzRVBcCypgUkOAoWgBX/L0CmxN40u6xwcIJ1cOzWYDffp3axsQOyvdkXiH9FKRFwPRHYZUaXMgPLeiW7QhbDRciyLXJaKheCuLbiVoqx1DVRyH26yb0hsuoOFEPsoz+BVE0MRlZNjGZcRQyHYkmMp2hBTIzdkzCTc/pLqOnBrk7/yZdAOq/q5NPBH1f7x7fGP4C3AAMAQrhzX9zhcGsAAAAASUVORK5CYII=) center center no-repeat;
+  background-size: 30px 30px;
+  text-indent: -10000px;
   border: none;
-  color: #2a2c2d;
-  font-size: 14px;
-  font-family: Aileron;
-  width: 180px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity .4s ease;
 }
 
-/* Wrapper around the hour, minute, second, and am/pm fields as well as 
-the up and down buttons and the 'X' button */
-input[type=time]::-webkit-datetime-edit-fields-wrapper {
-  display: flex;
+input[type="submit"]:hover {
+  opacity: 0.8;
 }
+/*end of Search box*/  
 
-/* The space between the fields - between hour and minute, the minute and 
-second, second and am/pm */
-input[type=time]::-webkit-datetime-edit-text {
-  padding: 19px 4px;
-}
-
-/* The naming convention for the hour, minute, second, and am/pm field is
-`-webkit-datetime-edit-{field}-field` */
-
-/* Hour */
-input[type=time]::-webkit-datetime-edit-hour-field {
-  background-color: #f1f1f1;
-  border-radius: 15%;
-  padding: 19px 13px;
-}
-
-/* Minute */
-input[type=time]::-webkit-datetime-edit-minute-field {
-  background-color: #f1f1f1;
-  border-radius: 15%;
-  padding: 19px 13px;
-}
-
-/* AM/PM */
-input[type=time]::-webkit-datetime-edit-ampm-field {
-  background-color: #00BBD1;
-  border-radius: 15%;
-  color: #fff;
-  padding: 19px 13px;
-}
-
-/* 'X' button for resetting/clearing time */
-input[type=time]::-webkit-clear-button {
-  display: none;
-}
-
-/* Up/Down arrows for incrementing/decrementing the value */
-input[type=time]::-webkit-inner-spin-button {
-  display: none;
-}
-/* end of time*/
-
-/* for qr code*/
-#qrcode {
-  width:160px;
-  height:160px;
-  margin-top:15px;
-}
-/* end of qr code*/
+/* End of Main Content Code */
