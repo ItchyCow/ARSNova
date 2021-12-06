@@ -13,7 +13,7 @@ module.exports = {
 >>>>>>> 15cfa8abfeb793f6f37220d38565d7eef5f48d96
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public/bundles'),
     filename: '[name].js'
   },
   watch: true
