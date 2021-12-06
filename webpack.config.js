@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     index: './public/src/index.js',
     homepage: './public/src/homepage.js',
+    trouble: './public/src/trouble.js'
   },
   output: {
     path: path.resolve(__dirname, 'public'),
