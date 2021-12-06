@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 @import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
+
 body {
     margin: 0;
     font-family: "Aileron";
@@ -168,9 +169,9 @@ a {
   margin: 2px 0px;
   display: inline-block;
   position: absolute;
-  top: 10%;
+  top: 9%;
   height: 10px;
-  float: left;
+  float: none;
   padding: 0;
   position: absolute;
 }
@@ -179,11 +180,10 @@ input[type="text"] {
   height: 30px;
   font-size: 15px;
   display: inline-block;
-  font-family: "Lato";
   font-weight: 100;
   border: none;
   outline: none;
-  color: #555;
+  color: rgb(138, 138, 138);
   padding: 3px;
   padding-left: 50;
   width: 0px;
@@ -212,7 +212,7 @@ input[type="submit"] {
   width: 33px;
   display: inline-block;
   color:red;
-  float: left;
+  float: none;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRFU1NT9fX1lJSUXl5e1dXVfn5+c3Nz6urqv7+/tLS0iYmJqampn5+fysrK39/faWlp////Vi4ZywAAABF0Uk5T/////////////////////wAlrZliAAABLklEQVR42rSWWRbDIAhFHeOUtN3/ags1zaA4cHrKZ8JFRHwoXkwTvwGP1Qo0bYObAPwiLmbNAHBWFBZlD9j0JxflDViIObNHG/Do8PRHTJk0TezAhv7qloK0JJEBh+F8+U/hopIELOWfiZUCDOZD1RADOQKA75oq4cvVkcT+OdHnqqpQCITWAjnWVgGQUWz12lJuGwGoaWgBKzRVBcCypgUkOAoWgBX/L0CmxN40u6xwcIJ1cOzWYDffp3axsQOyvdkXiH9FKRFwPRHYZUaXMgPLeiW7QhbDRciyLXJaKheCuLbiVoqx1DVRyH26yb0hsuoOFEPsoz+BVE0MRlZNjGZcRQyHYkmMp2hBTIzdkzCTc/pLqOnBrk7/yZdAOq/q5NPBH1f7x7fGP4C3AAMAQrhzX9zhcGsAAAAASUVORK5CYII=) center center no-repeat;
   background-size: 30px 30px;
   text-indent: -10000px;
@@ -236,23 +236,43 @@ input[type="submit"]:hover {
     content:" *";
     color: #00BBD1;
   }
+ 
+  .btn {
+	background-color: white;
+	border: none; /* Remove borders */
+	color: black; /* Black text */
+	padding: 12px 16px; /* Some padding */
+	font-size: 16px; /* Set a font size */
+	cursor: pointer; /* Mouse pointer on hover */
+	border-radius: 8px;
+	position: relative;
+	top: 0;
+	left: 550px;
+	}
+
+/* Darker background on mouse-over */
+  .btn:hover {
+	background-color: #d4f2f2;
+} 
   
-.button {
-  background-color: #00BBD1;
-  border: none;
-  color: FCF8F6;
-  padding: 10 20 10 20;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-family: "Aileron";
-
+  .button {
+	background-color: #00BBD1;
+	border: none;
+	color: FCF8F6;
+	padding: 10 20 10 20;
+	text-align: center;
+	text-decoration: none;
+	font-size: 10px;
+	cursor: pointer;
+	border-radius: 4px;
 }
 
-.button:hover{
-  background-color: #96A1A8;
-  color: white;
+  .button:hover{
+	background-color: #96A1A8;
+	color: white;
 }
+
+  .icon {
+    height: 25px;
+  }
 /* End of Main Content Code */
