@@ -76,11 +76,30 @@ function getProfileImageUrl(user_id) {
     var location = "images/"+ user_id
     getDownloadURL(ref(storage, location)).then((url) => {
         return url
-
     })
-
 }
 
-uploadQR("Hello world hi there")
-document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
+async function addEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
+    var docRef = await addDoc(collection(db, "event"), {
+        availability: availability,
+        date: date,
+        fine: fine,
+        location: location,
+        name: name,
+        time_end: time_end,
+        time_start: time_start,
+        type: type
+    })
+
+    await updateDoc(doc(db, "event", docRef.id), {
+        qrcode: docRef.id
+    })
+
+    uploadQR(docRef.id)
+    
+}
+
+/// Sample function calles
+// document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
+// addEventtoFirestore(true, "07/06/21", 25, "Zoom", "Sample Event", "whole day", "whole day", "University")
 
