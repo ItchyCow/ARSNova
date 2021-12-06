@@ -155,6 +155,7 @@ a {
     font-weight: bold;
     font-size: xx-large;
     margin-top:0;
+    float: left;
   }
 
   .avatar {
@@ -170,6 +171,7 @@ a {
   height: 15px;
   width: auto;
   margin-right: 5;
+  float: left;
 }
 
 .button{
