@@ -312,13 +312,13 @@ input[type="submit"]:hover {
   height: 78%;
 }
 
-.eventsheader, .eventsdata {
+.events, .eventsdata {
   width: 100%;
   table-layout: fixed;
 }
 
-.eventsheader th {
-  font-size: 20px;
+.events th {
+  font-size: 25px;
 }
 
 colgroup .tick {
@@ -335,5 +335,16 @@ colgroup .Date, .Time_Start, .Time_End, .Location, .Fine, .Availability {
 }
 
 tr {
+  line-height: 25px;
   text-align: left;
+}
+
+td {
+  font-size: 18px;
+}
+
+.loading_message {
+  height: 100%;
+  text-align: center;
+  font-size: 50px !important;
 }
