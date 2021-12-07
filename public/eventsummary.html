@@ -57,8 +57,10 @@
             </div>
             
             <!-- Insert button to uncheck all checkboxes -->
+
+            <!-- Display Table -->
             <div class="container" id="eventtable">
-                <table class="eventsheader" id="events" style="border: 1;">
+                <table class="events" id="events">
                     <colgroup>
                         <col class="tick">
                         <col class="Event">
@@ -79,31 +81,18 @@
                         <th>Fine</th>
                         <th>Availability</th>
                     </tr>
+                    
+                    <!-- Insert events from database -->
+                    <tbody id="eventsdata">
+                        <tr>
+                            <td colspan="8" class="loading_message">LOADING DATA</td>
+                        </tr>
+                    </tbody>
                 </table>
-                <table class="eventsdata" id="eventsdata">
-                    <colgroup>
-                        <col class="tick">
-                        <col class="Event">
-                        <col class="Date">
-                        <col class="Time_Start">
-                        <col class="Time_End">
-                        <col class="Location">
-                        <col class="Fine">
-                        <col class="Availability">
-                    </colgroup>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>Event</td>
-                        <td>Date</td>
-                        <td>Time Start</td>
-                        <td>Time End</td>
-                        <td>Location</td>
-                        <td>Fine</td>
-                        <td>Availability</td>
-                    </tr>
-                </table>
+
+                
             </div>
-            <!-- Insert events from database -->
+            
        
         </div>
         <script src="bundles/eventsummary.js"></script>
