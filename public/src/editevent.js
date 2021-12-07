@@ -76,7 +76,7 @@ const colRef = collection(db, 'event')
 })
 
 // adding documents
-const addEventForm = document.querySelector('.edit')
+const editEventForm = document.querySelector('.edit')
 editEventForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
