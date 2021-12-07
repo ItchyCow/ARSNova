@@ -36,16 +36,19 @@ const db = getFirestore()
 const auth = getAuth()
 const storage = getStorage()
 
+//global vars
 var userID
+
+//firebase functions
 onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid
-        
+        getProfileImageUrl('home_pp')
         console.log('user status changed:', userID)
         const dataRef = doc(db, 'user', userID)
         onSnapshot(dataRef, (doc) => {
             document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname
-            document.getElementById('profemail').innerHTML = user.email
+            document.getElementById('profemail').innerHTML = doc.data().email
         })
     }
     else {
@@ -66,19 +69,12 @@ logoutButton.addEventListener('click', () => {
         })
 })
 
-function getProfileImageUrl(x) {
-    var location = "images/" + x
-    console.log(x)
+//custom functions
+function getProfileImageUrl(destination) {
+    var location = "images/" + userID
     console.log(location)
     getDownloadURL(ref(storage, location))
         .then((url) => {
-            console.log(url)
-            return url
-        })
-        .catch((err) => {
-            console.log(err)
+            document.getElementById(destination).src = url
         })
 }
-
-//document.getElementById('home_pp').src = getProfileImageUrl('yCLNQPosR3RUvKYd7tqOs73Rdc52')
-document.getElementById('home_pp').src = "https://firebasestorage.googleapis.com/v0/b/ccs6-b084d.appspot.com/o/images%2FyCLNQPosR3RUvKYd7tqOs73Rdc52?alt=media&token=d5a76293-8277-4b8b-837f-529dac714464"

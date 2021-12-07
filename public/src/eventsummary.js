@@ -12,6 +12,10 @@ import {
     signInWithEmailAndPassword, signOut,
     onAuthStateChanged
 } from 'firebase/auth'
+import { 
+    getStorage, ref, 
+    getDownloadURL
+} from "firebase/storage"
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMjNRz6ccicva3bAuQ07MN-xniNSCk0_A",
@@ -29,12 +33,34 @@ initializeApp(firebaseConfig)
 //init services
 const db = getFirestore()
 const auth = getAuth()
+const storage = getStorage()
 
+//global vars
+var userID
+
+//firebase functions
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        console.log(user)
+        userID = user.uid
+        getProfileImageUrl('evsum_pp')
+        console.log('user status changed:', userID)
+        const dataRef = doc(db, 'user', userID)
+        onSnapshot(dataRef, (doc) => {
+            document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
+        })
     }
     else {
         window.location = 'index.html'
+        console.log('user not signed in')
     }
 })
+
+//custom functions
+function getProfileImageUrl(destination) {
+    var location = "images/" + userID
+    console.log(location)
+    getDownloadURL(ref(storage, location))
+        .then((url) => {
+            document.getElementById(destination).src = url
+        })
+}
