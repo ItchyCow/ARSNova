@@ -99,7 +99,7 @@ editEventForm.addEventListener('submit', (e) => {
 })
 */
 
- function editEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
+/*function editEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
      updateDoc(collection(db, "event"), {
         availability: availability,
         date: date,
@@ -110,9 +110,9 @@ editEventForm.addEventListener('submit', (e) => {
         time_start: time_start,
         type: type
     })
-}
+}*/
 
-const eventID = "H7mHaWjGDzp5wCMOqsRq" //sessionStorage.getItem('eventID')
+const eventID = sessionStorage.getItem('eventID')
 console.log(eventID)
 
 function getEventFromFirestore(uid) {
@@ -135,7 +135,7 @@ function getEventFromFirestore(uid) {
     })
 }
 
-function updateEventtoFirestore(uid) {
+/*function updateEventtoFirestore(uid) {
     updateDoc(doc(db, "event", uid), {
         name: document.getElementById("name").value,
         location: document.getElementById("location").value,
@@ -151,12 +151,32 @@ function updateEventtoFirestore(uid) {
     })
 
     console.log(document.getElementById("bio_ID").value)
-}
+}*/
 
 
 getEventFromFirestore(eventID)
 
-document.getElementById("save_btn").onclick = function() {updateEventtoFirestore(eventID)}
+const saveChanges = document.querySelector('.edit')
+saveChanges.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    let docRef = doc(db,'event', eventID)
+    updateDoc(docRef, {
+        name: document.getElementById("name").value,
+        location: document.getElementById("location").value,
+        type: document.getElementById("type").value,
+        fine: document.getElementById("fine").value,
+        time_start:  document.getElementById("time_start").value,
+        time_end: document.getElementById("time_end").value,
+        date: document.getElementById("date").value,
+        availability: document.getElementById("availability").value
+    })
+    .then(() => {
+        window.location = 'eventsummary.html'
+    })
+})
+
+//document.getElementById("save_btn").onclick = function() {updateEventtoFirestore(eventID)}
 
 /// Sample function calles
 // document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
