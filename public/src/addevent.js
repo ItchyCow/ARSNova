@@ -134,6 +134,14 @@ async function addEventtoFirestore(availability, date, fine, location, name, tim
     
 }
 
+var QRCode = require('qrcode')
+var canvas = document.getElementById('qrcode')
+
+QRCode.toCanvas(canvas, 'sample text', function (error) {
+    if (error) console.log(error)
+    console.log('Success on QRCode!')
+})
+
 /// Sample function calles
 // document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
 // addEventtoFirestore(true, "07/06/21", 25, "Zoom", "Sample Event", "whole day", "whole day", "University")
