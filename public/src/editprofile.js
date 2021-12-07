@@ -13,6 +13,16 @@ import {
     onAuthStateChanged
 } from 'firebase/auth'
 
+const firebaseConfig = {
+    apiKey: "AIzaSyBMjNRz6ccicva3bAuQ07MN-xniNSCk0_A",
+    authDomain: "ccs6-b084d.firebaseapp.com",
+    projectId: "ccs6-b084d",
+    storageBucket: "ccs6-b084d.appspot.com",
+    messagingSenderId: "741143261047",
+    appId: "1:741143261047:web:42557543c4d2a0cf0c7b72",
+    measurementId: "G-KQ9QHRVZLG"
+};
+
   //init firebase app
 initializeApp(firebaseConfig)
 
@@ -20,38 +30,17 @@ initializeApp(firebaseConfig)
 const db = getFirestore()
 const auth = getAuth()
 
-//collection ref
-const colRef = collection(db, 'user')
 
-//real time collection data
-onSnapshot(colRef, (snapshot) => {
-    let user = []
-    snapshot.docs.forEach((doc) => {
-        user.push({ ...doc.data(), id: doc.id})
+function getUserFromFirestore(uid) {
+    var docRef = doc(db, "user", uid)
+    var docSnap = getDoc(docRef).then((value) => {
+        // Code here 
+        // attribute = value.data().attribute
+
+        console.log(value.data().fname)
+        return value.data()
     })
-    console.log(user)
-})
-
-/*updating a document
-const updateForm = document.querySelector('.update')
-updateForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    const docRef = doc(db, 'user', updateForm.id.value)
-})*/
-
-function writeNewPost(bio, course, position, year_level) {
-      
-    // A post entry.
-    const postData = {
-      bio: bio,
-      course: course,
-      position: position,
-      year_level: year_level
-    };
-  
-    // Get a key for a new Post.
-    const docRef = doc(db, 'user', updateForm.id.value)
-  
-    return update(ref(db), updates);
 }
+
+
+getUserFromFirestore("XrCKsAwS3yejfB0g9a1Zmjv6Y812")
