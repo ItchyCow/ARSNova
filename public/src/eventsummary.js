@@ -36,6 +36,7 @@ const auth = getAuth()
 const storage = getStorage()
 
 //global vars
+const eventRef = collection(db, 'event')
 var userID
 
 //firebase functions
@@ -55,6 +56,14 @@ onAuthStateChanged(auth, (user) => {
     }
 })
 
+onSnapshot(eventRef, (snapshot) => {
+    let event = []
+    snapshot.docs.forEach((doc) => {
+        event.push({ ...doc.data()})
+    })
+    event.forEach(displayToTable())
+})
+
 //custom functions
 function getProfileImageUrl(destination) {
     var location = "images/" + userID
@@ -63,4 +72,8 @@ function getProfileImageUrl(destination) {
         .then((url) => {
             document.getElementById(destination).src = url
         })
+}
+
+function displayToTable() {
+
 }

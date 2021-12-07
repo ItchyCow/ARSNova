@@ -12,8 +12,8 @@
         <div class = "sidebar">
             <a href ="homepage.html"><img src="resources/images/sidebar logo.png" class="ars"></a>
             <div class="iconlink">
-                <a href = "#Users"><img src="resources/icons/group.png" class="iconnav"> Users<img src="resources/icons/right-arrow.png" class="arrow"></a>
-                <a href = "#Events"><img src="resources/icons/calendar.png" class="iconnav">Events<img src="resources/icons/right-arrow.png" class="arrow"></a>
+                <a href = "usersummary.html"><img src="resources/icons/group.png" class="iconnav"> Users<img src="resources/icons/right-arrow.png" class="arrow"></a>
+                <a href = "eventsummary.html"><img src="resources/icons/calendar.png" class="iconnav">Events<img src="resources/icons/right-arrow.png" class="arrow"></a>
                 <a href ="#Logout"><img src="resources/icons/logout.png" class="iconnav">Logout</a>
             </div>
 
@@ -28,37 +28,84 @@
         
         <!-- Page content -->
         <div class="main">
-            <!-- Breadcrumbs of Pages-->
-            <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Users</a></li>
-            </ul>
-            
-            <!-- Search box -->
-            <div id="wrap">
-                <form action="" autocomplete="on">
-                    <input id="search" name="search" type="text" placeholder="Enter name of event"><input id="search_submit" value="Rechercher" type="submit">
-                </form>
+            <div class="header">
+                <!-- Breadcrumbs of Pages-->
+                <ul class="breadcrumb">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="usersummary.html">Events</a></li>
+                </ul>
+                
+                <!-- eh box -->
+                <div id="wrap">
+                    <form action="" autocomplete="on">
+                        <input id="search" name="search" type="text" placeholder="Enter name of event"><input id="search_submit" value="Rechercher" type="submit">
+                    </form>
+                </div>
+                
+                <!-- Main Content -->
+                <h2 class="summarytitle" href="#home">Summary of Events</h2>
+                <a href = "addevent.html"><button class="btn"><img src = "resources/icons/plus.png" class = "icon"> &nbsp; &nbsp;Add Event</button></a>
+                <button class="btn2"><img src = "resources/icons/delete.png" class = "icon"> &nbsp;Delete Event</button>
+                
+                <p style = "color:#96A1A8">Select each event to edit, time, location, and fine.</p>
+                
+                
+                
+                <!-- Checkbox -->
+                <input type="checkbox" id="selectall" name="selectall" value=" "> <!-- insert value-->
+                <label for="selectall"> Select All </label>
             </div>
             
-            <!-- Main Content -->
-            <h2  href="#home">Summary of Events</h2>
-            <a href = "addevent.html"><button class="btn"><img src = "resources/icons/plus.png" class = "icon"> &nbsp; &nbsp;Add Event</button></a>
-            <button class="btn2"><img src = "resources/icons/delete.png" class = "icon"> &nbsp;Delete Event</button>
-            
-            <p style = "color:#96A1A8">Select each event to edit, time, location, and fine.</p>
-            
-            
-            
-            <!-- Checkbox -->
-            <input type="checkbox" id="selectall" name="selectall" value=" "> <!-- insert value-->
-            <label for="selectall"> Select All </label>
-            
             <!-- Insert button to uncheck all checkboxes -->
-        
+            <div class="container" id="eventtable">
+                <table class="eventsheader" id="events" style="border: 1;">
+                    <colgroup>
+                        <col class="tick">
+                        <col class="Event">
+                        <col class="Date">
+                        <col class="Time_Start">
+                        <col class="Time_End">
+                        <col class="Location">
+                        <col class="Fine">
+                        <col class="Availability">
+                    </colgroup>
+                    <tr>
+                        <th></th>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Time Start</th>
+                        <th>Time End</th>
+                        <th>Location</th>
+                        <th>Fine</th>
+                        <th>Availability</th>
+                    </tr>
+                </table>
+                <table class="eventsdata" id="eventsdata">
+                    <colgroup>
+                        <col class="tick">
+                        <col class="Event">
+                        <col class="Date">
+                        <col class="Time_Start">
+                        <col class="Time_End">
+                        <col class="Location">
+                        <col class="Fine">
+                        <col class="Availability">
+                    </colgroup>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Event</td>
+                        <td>Date</td>
+                        <td>Time Start</td>
+                        <td>Time End</td>
+                        <td>Location</td>
+                        <td>Fine</td>
+                        <td>Availability</td>
+                    </tr>
+                </table>
+            </div>
             <!-- Insert events from database -->
+       
         </div>
-
         <script src="bundles/eventsummary.js"></script>
     </body>
 </html>
