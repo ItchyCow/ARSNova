@@ -52,30 +52,12 @@ var userID
 onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid
+        getUserFromFirestore(userID)
         console.log('user status changed:', userID)
         const dataRef = doc(db, 'user', userID)
+        getProfileImageUrl('addevent_pp')
         onSnapshot(dataRef, (doc) => {
             document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
-        })
-    }
-    else {
-        window.location = 'index.html'
-        console.log('user not signed in')
-    }
-})
-
-
-
-//firebase functions
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        userID = user.uid
-        getProfileImageUrl('addevent_pp')
-        getProfileImageUrl('profilepage_pp')
-        console.log('user status changed:', userID)
-        const dataRef = doc(db, 'user', userID)
-        onSnapshot(dataRef, (doc) => {
-            
         })
     }
     else {
@@ -131,10 +113,13 @@ function updateUsertoFirestore(uid) {
         year_level: document.getElementById("year_level").value,
         position: document.getElementById("position").value
     })
+    .then(() => {
+        window.location = 'profilepage.html'
+    })
     console.log(document.getElementById("bio_ID").value)
 }
 
 
-getUserFromFirestore("XrCKsAwS3yejfB0g9a1Zmjv6Y812")
+console.log(auth.currentUser)
 
-document.getElementById("save_btn").onclick = function() {updateUsertoFirestore("XrCKsAwS3yejfB0g9a1Zmjv6Y812")}
+document.getElementById("save_btn").onclick = function() {updateUsertoFirestore(userID)}
