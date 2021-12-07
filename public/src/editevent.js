@@ -64,18 +64,7 @@ function getProfileImageUrl(destination) {
         })
 }
 
-// collection ref
-const colRef = collection(db, 'event')
-
- // real time collection data  
- onSnapshot(colRef, (snapshot) => {
-    let event = []
-    snapshot.docs.forEach((doc) => {
-        event.push({ ...doc.data(), id: doc.id})
-    })
-    console.log(event)
-})
-
+//logout
 const logoutButton = document.querySelector('.lobtn')
 logoutButton.addEventListener('click', () => {
     signOut(auth)
@@ -88,42 +77,17 @@ logoutButton.addEventListener('click', () => {
         })
 })
 
-/*
-// adding documents
-const editEventForm = document.querySelector('.edit')
-editEventForm.addEventListener('submit', (e) => {
-    e.preventDefault()
+// collection ref
+const colRef = collection(db, 'event')
 
-    addDoc(colRef, {
-        name: editEventForm.name.value,
-        location: editEventForm.location.value,
-        type: editEventForm.type.value,
-        fine: editEventForm.fine.value,
-        //id: editEventForm.id.value,
-        time_start: editEventForm.time_start.value,
-        time_end: editEventForm.time_end.value,
-        date: editEventForm.date.value,
-        availability: editEventForm.availability.value,
-        //code: addEventForm.code.value,
+ // real time collection data  
+ onSnapshot(colRef, (snapshot) => {
+    let event = []
+    snapshot.docs.forEach((doc) => {
+        event.push({ ...doc.data(), id: doc.id})
     })
-    .then(() => {
-        editEventForm.reset()
-    })
+    console.log(event)
 })
-*/
-
-/*function editEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
-     updateDoc(collection(db, "event"), {
-        availability: availability,
-        date: date,
-        fine: fine,
-        location: location,
-        name: name,
-        time_end: time_end,
-        time_start: time_start,
-        type: type
-    })
-}*/
 
 const eventID = sessionStorage.getItem('eventID')
 console.log(eventID)
@@ -147,25 +111,6 @@ function getEventFromFirestore(uid) {
 
     })
 }
-
-/*function updateEventtoFirestore(uid) {
-    updateDoc(doc(db, "event", uid), {
-        name: document.getElementById("name").value,
-        location: document.getElementById("location").value,
-        type: document.getElementById("type").value,
-        fine: document.getElementById("fine").value,
-        time_start:  document.getElementById("time_start").value,
-        time_end: document.getElementById("time_end").value,
-        date: document.getElementById("date").value,
-        availability: document.getElementById("availability").value
-    })
-    .then(() => {
-        //window.location = 'eventsummary.html'
-    })
-
-    console.log(document.getElementById("bio_ID").value)
-}*/
-
 
 getEventFromFirestore(eventID)
 
