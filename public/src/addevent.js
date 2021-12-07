@@ -53,6 +53,17 @@ onAuthStateChanged(auth, (user) => {
     }
 })
 
+//custom functions
+function getProfileImageUrl(destination) {
+    var location = "images/" + userID
+    console.log(location)
+    getDownloadURL(ref(storage, location))
+        .then((url) => {
+            document.getElementById(destination).src = url
+        })
+}
+
+//logout
 const logoutButton = document.querySelector('.lobtn')
 logoutButton.addEventListener('click', () => {
     signOut(auth)
@@ -64,16 +75,6 @@ logoutButton.addEventListener('click', () => {
             console.log(err)
         })
 })
-
-//custom functions
-function getProfileImageUrl(destination) {
-    var location = "images/" + userID
-    console.log(location)
-    getDownloadURL(ref(storage, location))
-        .then((url) => {
-            document.getElementById(destination).src = url
-        })
-}
 
 // collection ref
 const colRef = collection(db, 'event')
@@ -124,6 +125,7 @@ addEventForm.addEventListener('submit', (e) => {
     })
     .then(() => {
         addEventForm.reset()
+       
     })
 })*/
 
