@@ -140,24 +140,23 @@ document.getElementById('clear').onclick = function clearAllBoxes() {
     }
 }
 
-/*function alertInnerHTML(e)
-{
-    e = e || window.event;
-    alert(this.innerHTML);
-}
-
-var theTbl = document.getElementById('events')
-for(var i = 0; i < theTbl.length; i++)
-{
-    for(var j = 0; j<theTbl.rows[i].cells.length; j++)
+/*function addRowHandlers() {
+    var theTbl = document.getElementById('events')
+    for(var i = 0; i < theTbl.length; i++)
     {
-        theTbl.rows[i].cells[j].onclick = alertInnerHTML
+        var currentRow = theTbl.rows[i]
+        for(var j = 0; j<theTbl.rows[i].cells.length; j++)
+        {
+            if (j != 0) {
+                currentRow.onclick = console.log('hello')
+            }
+        }
     }
 }*/
 
 function addRowHandlers() {
-    var table = document.getElementById("events")
-    var rows = table.getElementsByTagName("tr")
+    var table = document.getElementById('events')
+    var rows = table.getElementsByTagName('tr')
     for (var i = 0; i < rows.length; i++) {
         var currentRow = table.rows[i]
         var createClickHandler = function(row) {
@@ -166,7 +165,6 @@ function addRowHandlers() {
             window.location = 'editevent.html'
             }
         }
-      currentRow.onclick = createClickHandler(currentRow);
+        currentRow.onclick = createClickHandler(currentRow);
     }
-  }
-
+}

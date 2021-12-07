@@ -39,11 +39,15 @@
     <p style = "color:#96A1A8">Update event details here</p>
 
     <!-- Event Name Accessed from Database-->
-    <h3 href="#">Industry Lecture Series: Sucess in the Digital Landscape</h3><br>
+    
   
     <!-- Form Action Page (Where data will be stored)-->
     <form class="edit" action="/">
       
+      <label for="name">Name of Event </label> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" id="name" name="name" size="50"><br><br>
+
       <label for="location">Location </label> 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -92,10 +96,12 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;
       <input type="boolean" id="availability" name="availability" size="10"><br><br>
+      
+      <canvas id="qrcode"></canvas>
  
       <br><br><br><br><br>
   
-    <button class="button">Save Changes</button>
+    <button class="button" id="save_btn">Save Changes</button>
       </form>
   </div>
 
