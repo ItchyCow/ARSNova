@@ -12,10 +12,7 @@ import {
     signInWithEmailAndPassword, signOut,
     onAuthStateChanged
 } from 'firebase/auth'
-import { 
-    getStorage, ref, 
-    getDownloadURL
-} from "firebase/storage"
+import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
 
 
 const firebaseConfig = {
@@ -37,6 +34,7 @@ initializeApp(firebaseConfig)
 //init services
 const db = getFirestore()
 const auth = getAuth()
+const storage = getStorage()
 
 //collection ref
 const colRef = collection(db, 'user')
@@ -58,12 +56,31 @@ onAuthStateChanged(auth, (user) => {
         const dataRef = doc(db, 'user', userID)
         onSnapshot(dataRef, (doc) => {
             document.getElementById('nameuser').innerHTML = doc.data().fname + " " + doc.data().lname
-            document.getElementById('nameusr').innerHTML = doc.data().fname + " " + doc.data().lname
-            document.getElementById('profemail').innerHTML = user.email
+            document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
             document.getElementById('useremail').innerHTML = user.email
             document.getElementById('position').innerHTML = doc.data().position
             document.getElementById('yrlvl').innerHTML = doc.data().year_level + " - " + doc.data().course
             document.getElementById('bio').innerHTML = doc.data().bio
+        })
+    }
+    else {
+        window.location = 'index.html'
+        console.log('user not signed in')
+    }
+})
+
+
+
+//firebase functions
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        userID = user.uid
+        getProfileImageUrl('addevent_pp')
+        getProfileImageUrl('profilepage_pp')
+        console.log('user status changed:', userID)
+        const dataRef = doc(db, 'user', userID)
+        onSnapshot(dataRef, (doc) => {
+            
         })
     }
     else {
