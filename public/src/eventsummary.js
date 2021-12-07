@@ -168,3 +168,27 @@ function addRowHandlers() {
         currentRow.onclick = createClickHandler(currentRow);
     }
 }
+
+var flag = true
+
+window.onload(changeState())
+function changeState() {
+    if (flag) {
+        var checks = document.getElementsByTagName('input')
+        for (var i = 0; i < checks.length; i++) {
+            if(checks[i].hasAttribute()) {
+                checks[i].disabled = true
+            }
+        }
+
+        
+    } else {
+        var checks = document.getElementsByTagName('input')
+
+        for (var i = 0; i < checks.length; i++) {
+            if(checks[i].hasAttribute()) {
+                checks[i].disabled = false
+            }
+        }
+    }
+}

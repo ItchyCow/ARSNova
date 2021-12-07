@@ -53,6 +53,18 @@ onAuthStateChanged(auth, (user) => {
     }
 })
 
+const logoutButton = document.querySelector('.lobtn')
+logoutButton.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            console.log('user signed out');
+            window.location = 'index.html'
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
 //custom functions
 function getProfileImageUrl(destination) {
     var location = "images/" + userID
@@ -80,6 +92,24 @@ const addEventForm = document.querySelector('.add')
 addEventForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
+    addEventtoFirestore(
+        addEventForm.availability.value,
+        addEventForm.date.value,
+        addEventForm.fine.value,
+        addEventForm.location.value,
+        addEventForm.name.value,
+        addEventForm.time_end.value,
+        addEventForm.time_start.value,
+        addEventForm.type.value,
+    )
+    .then(() => {
+        addEventForm.reset()
+    })
+})
+
+/*(e) => {
+    e.preventDefault()
+
     addDoc(colRef, {
         name: addEventForm.name.value,
         location: addEventForm.location.value,
@@ -95,7 +125,7 @@ addEventForm.addEventListener('submit', (e) => {
     .then(() => {
         addEventForm.reset()
     })
-})
+})*/
 
 function uploadQR(event_id) {
     var QRCode = require('qrcode')
