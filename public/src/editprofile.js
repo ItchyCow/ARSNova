@@ -12,6 +12,7 @@ import {
     signInWithEmailAndPassword, signOut,
     onAuthStateChanged
 } from 'firebase/auth'
+import { connectStorageEmulator } from '@firebase/storage';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMjNRz6ccicva3bAuQ07MN-xniNSCk0_A",
@@ -33,14 +34,29 @@ const auth = getAuth()
 
 function getUserFromFirestore(uid) {
     var docRef = doc(db, "user", uid)
-    var docSnap = getDoc(docRef).then((value) => {
+    var docSnap = getDoc(docRef).then((snapshot) => {
         // Code here 
         // attribute = value.data().attribute
 
-        console.log(value.data().fname)
-        return value.data()
+        document.getElementById("bio_ID").value = snapshot.data().bio
+        document.getElementById("year_level").value = snapshot.data().year_level
+        document.getElementById("course").value = snapshot.data().course
+        console.log("adasd")
+        return snapshot
+
     })
+}
+
+function updateUsertoFirestore(uid) {
+    updateDoc(doc(db, "user", uid), {
+        course: document.getElementById("course").value,
+        bio: document.getElementById("bio_ID").value,
+        year_level: document.getElementById("year_level").value
+    })
+    console.log(document.getElementById("bio_ID").value)
 }
 
 
 getUserFromFirestore("XrCKsAwS3yejfB0g9a1Zmjv6Y812")
+
+document.getElementById("save_btn").onclick = function() {updateUsertoFirestore("XrCKsAwS3yejfB0g9a1Zmjv6Y812")}
