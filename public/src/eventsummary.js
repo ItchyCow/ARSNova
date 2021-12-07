@@ -37,6 +37,7 @@ const storage = getStorage()
 
 //global vars
 const eventRef = collection(db, 'event')
+const q = query(eventRef, orderBy('name', 'asc'))
 var userID
 
 //firebase functions
@@ -56,12 +57,16 @@ onAuthStateChanged(auth, (user) => {
     }
 })
 
-onSnapshot(eventRef, (snapshot) => {
+onSnapshot(q, (snapshot) => {
     let event = []
     snapshot.docs.forEach((doc) => {
         event.push({ ...doc.data()})
     })
-    event.forEach(displayToTable())
+    resetTable()
+    for (var i in event) {
+        displayToTable(event[i])
+        //console.log(event[i].name)
+    }
 })
 
 //custom functions
@@ -74,6 +79,25 @@ function getProfileImageUrl(destination) {
         })
 }
 
-function displayToTable() {
+function displayToTable(event) {
+    let avail
+    if (event.availability === true) {
+        avail = 'Available'
+    } else {
+        avail = 'Not Available'
+    }
 
+    var codeBlock = "<td><input type='checkbox'></td>" +
+                    "<td>" + event.name + "</td>" +
+                    "<td>" + event.date + "</td>" +
+                    "<td>" + event.time_start + "</td>" +
+                    "<td>" + event.time_end + "</td>" +
+                    "<td>" + event.location + "</td>" +
+                    "<td>" + event.fine + "</td>" +
+                    "<td>" + avail + "</td>"
+    document.getElementById('eventsdata').innerHTML += codeBlock
+}
+
+function resetTable() {
+    document.getElementById('eventsdata').innerHTML = ""
 }

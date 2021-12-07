@@ -112,8 +112,6 @@ function uploadQR(event_id) {
     
 }
 
-
-
 async function addEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
     var docRef = await addDoc(collection(db, "event"), {
         availability: availability,
