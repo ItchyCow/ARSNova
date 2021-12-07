@@ -66,12 +66,12 @@
                 
                 <p class="bio"style="float: left; margin-right: 30;">Bio</p> 
                 &nbsp;
-                <textarea placeholder="Describe yourself." cols="40" rows="5"></textarea>
+                <textarea placeholder="Describe yourself." cols="40" rows="5" id="bio_ID"></textarea>
 
                 <br><br><br>
 
                 <label class="required">Year</label>
-                    <select name="Year">
+                    <select name="Year" id="year_level">
                         <option selected value="I">I</option>
                         <option value="II">II</option>
                         <option value="III">III</option>
@@ -81,7 +81,7 @@
                 &nbsp; &nbsp; &nbsp; &nbsp;
 
                 <label class="required">Course</label>
-                    <select name="Course">
+                    <select name="Course" id="course">
                         <option selected value="BSIT">BSIT</option>
                         <option value="BSCS">BSCS</option>
                         <option value="BLIS">BLIS</option>
@@ -105,10 +105,10 @@
 
             <br><br><br>
 
-            <button class="button">Save Changes</button>
+            <button class="button" id="save_btn">Save Changes</button>
 
         </div>
 
-        <script src ="editprofile.js"></script>
+        <script src ="bundles/editprofile.js"></script>
     </body>
 </html>

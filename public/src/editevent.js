@@ -12,6 +12,7 @@ import {
     signInWithEmailAndPassword, signOut,
     onAuthStateChanged
 } from 'firebase/auth'
+
 import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
@@ -98,9 +99,8 @@ editEventForm.addEventListener('submit', (e) => {
 })
 
 
-
 async function editEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
-    var docRef = await addDoc(collection(db, "event"), {
+    await updateDoc(collection(db, "event"), {
         availability: availability,
         date: date,
         fine: fine,
@@ -110,14 +110,8 @@ async function editEventtoFirestore(availability, date, fine, location, name, ti
         time_start: time_start,
         type: type
     })
-
-    await updateDoc(doc(db, "event", docRef.id), {
-        qrcode: docRef.id
-    })
-
-    uploadQR(docRef.id)
-    
 }
+
 
 /// Sample function calles
 // document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
