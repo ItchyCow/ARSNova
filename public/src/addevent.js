@@ -76,11 +76,9 @@ function getProfileImageUrl(user_id) {
     var location = "images/"+ user_id
     getDownloadURL(ref(storage, location)).then((url) => {
         return url
-
     })
-
 }
 
-uploadQR("Hello world hi there")
+//uploadQR("Hello world hi there")
 document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
 
