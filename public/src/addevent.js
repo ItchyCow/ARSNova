@@ -63,6 +63,19 @@ function getProfileImageUrl(destination) {
         })
 }
 
+//logout
+const logoutButton = document.querySelector('.lobtn')
+logoutButton.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            console.log('user signed out');
+            window.location = 'index.html'
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
 // collection ref
 const colRef = collection(db, 'event')
 
@@ -80,7 +93,7 @@ const addEventForm = document.querySelector('.add')
 addEventForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    addDoc(colRef, {
+    var docRef = await addDoc(colRef, {
         name: addEventForm.name.value,
         location: addEventForm.location.value,
         type: addEventForm.type.value,
@@ -94,7 +107,14 @@ addEventForm.addEventListener('submit', (e) => {
     })
     .then(() => {
         addEventForm.reset()
+       
     })
+    console.log("somehting")
+    await updateDoc(doc(db, "event", docRef.id), {
+        qrcode: docRef.id
+    })
+
+    uploadQR(docRef.id)
 })
 
 function uploadQR(event_id) {
