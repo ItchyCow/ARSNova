@@ -108,26 +108,7 @@ addEventForm.addEventListener('submit', (e) => {
     })
 })
 
-/*(e) => {
-    e.preventDefault()
 
-    addDoc(colRef, {
-        name: addEventForm.name.value,
-        location: addEventForm.location.value,
-        type: addEventForm.type.value,
-        fine: addEventForm.fine.value,
-        //id: addEventForm.id.value,
-        time_start: addEventForm.time_start.value,
-        time_end: addEventForm.time_end.value,
-        date: addEventForm.date.value,
-        availability: addEventForm.availability.value,
-        //code: addEventForm.code.value,
-    })
-    .then(() => {
-        addEventForm.reset()
-       
-    })
-})*/
 
 function uploadQR(event_id) {
     var QRCode = require('qrcode')
@@ -163,8 +144,6 @@ async function addEventtoFirestore(availability, date, fine, location, name, tim
     uploadQR(docRef.id)
     
 }
-
-
 
 /// Sample function calles
 // document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
