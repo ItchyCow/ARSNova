@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app'
-import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
 import {
     getFirestore, collection, onSnapshot,
     addDoc, deleteDoc, doc,
@@ -7,6 +6,13 @@ import {
     orderBy,
     getDoc, updateDoc
 } from 'firebase/firestore'
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, signOut,
+    onAuthStateChanged
+} from 'firebase/auth'
+import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMjNRz6ccicva3bAuQ07MN-xniNSCk0_A",
@@ -24,7 +30,38 @@ initializeApp(firebaseConfig)
 
 //init services
 const db = getFirestore()
+const auth = getAuth()
 const storage = getStorage()
+
+//global vars
+var userID
+
+//firebase functions
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        userID = user.uid
+        getProfileImageUrl('addevent_pp')
+        console.log('user status changed:', userID)
+        const dataRef = doc(db, 'user', userID)
+        onSnapshot(dataRef, (doc) => {
+            document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
+        })
+    }
+    else {
+        window.location = 'index.html'
+        console.log('user not signed in')
+    }
+})
+
+//custom functions
+function getProfileImageUrl(destination) {
+    var location = "images/" + userID
+    console.log(location)
+    getDownloadURL(ref(storage, location))
+        .then((url) => {
+            document.getElementById(destination).src = url
+        })
+}
 
 // collection ref
 const colRef = collection(db, 'event')
@@ -44,12 +81,15 @@ addEventForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
     addDoc(colRef, {
-        Name: addEventForm.Name.value,
-        Location: addEventForm.Location.value,
-        id: addEventForm.id.value,
-        TimeS: addEventForm.TimeS.value,
-        TimeE: addEventForm.TimeE.value,
+        name: addEventForm.name.value,
+        location: addEventForm.location.value,
+        type: addEventForm.type.value,
+        fine: addEventForm.fine.value,
+        //id: addEventForm.id.value,
+        time_start: addEventForm.time_start.value,
+        time_end: addEventForm.time_end.value,
         date: addEventForm.date.value,
+        availability: addEventForm.availability.value,
         //code: addEventForm.code.value,
     })
     .then(() => {
@@ -72,12 +112,7 @@ function uploadQR(event_id) {
     
 }
 
-function getProfileImageUrl(user_id) {
-    var location = "images/"+ user_id
-    getDownloadURL(ref(storage, location)).then((url) => {
-        return url
-    })
-}
+
 
 async function addEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
     var docRef = await addDoc(collection(db, "event"), {
