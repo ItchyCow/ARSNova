@@ -87,17 +87,27 @@ function displayToTable(event) {
         avail = 'Not Available'
     }
 
-    var codeBlock = "<td><input type='checkbox'></td>" +
+    var codeBlock = "<tr><td><input type='checkbox' name='ticks'></td>" +
                     "<td>" + event.name + "</td>" +
                     "<td>" + event.date + "</td>" +
                     "<td>" + event.time_start + "</td>" +
                     "<td>" + event.time_end + "</td>" +
                     "<td>" + event.location + "</td>" +
                     "<td>" + event.fine + "</td>" +
-                    "<td>" + avail + "</td>"
+                    "<td>" + avail + "</td></tr>"
     document.getElementById('eventsdata').innerHTML += codeBlock
 }
 
 function resetTable() {
     document.getElementById('eventsdata').innerHTML = ""
 }
+
+const selectall = document.getElementById('selectall')
+selectall.addEventListener('clicked', (e) => {
+    console.log(selectall.checked)
+    let checkboxes = document.getElementsByName('ticks')
+
+    for(var i = 0, n = checkboxes.length; i < n; i++) {
+        checkboxes[i].checked = selectall.checked
+    }
+})

@@ -112,9 +112,9 @@ a {
   display: inline-block;
   color: #96A1A8;
 }
-  a:hover {
-    text-decoration: underline;
-  }
+a:hover {
+  text-decoration: underline;
+}
 
   /* Collapsed breadcrumbs */
 
@@ -306,8 +306,7 @@ input[type="submit"]:hover {
 
 .container {
   margin-top: 10px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: scroll;
   width: 100%;
   height: 78%;
 }
@@ -322,8 +321,7 @@ input[type="submit"]:hover {
 }
 
 colgroup .tick {
-  width: 5%;
-  height: 5%;
+  width: 3%;
 }
 
 colgroup .Event {
@@ -340,6 +338,7 @@ tr {
 }
 
 td {
+  line-height: 25px;
   font-size: 18px;
 }
 
@@ -347,4 +346,8 @@ td {
   height: 100%;
   text-align: center;
   font-size: 50px !important;
+}
+
+.selectall {
+  margin-left: 3px;
 }
