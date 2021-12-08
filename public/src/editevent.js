@@ -134,12 +134,6 @@ saveChanges.addEventListener('submit', (e) => {
     })
 })
 
-//document.getElementById("save_btn").onclick = function() {updateEventtoFirestore(eventID)}
-
-/// Sample function calles
-// document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
-// addEventtoFirestore(true, "07/06/21", 25, "Zoom", "Sample Event", "whole day", "whole day", "University")
-
 var QRCode = require('qrcode')
 var canvas = document.getElementById('qrcode')
 
@@ -147,3 +141,15 @@ QRCode.toCanvas(canvas, 'sample text', function (error) {
     if (error) console.log(error)
     console.log('Success on QRCode!')
 })
+
+/*
+// qrcode functions
+function getQRCodeUrl(destination) {
+    var location = "qrcodes/" + userID
+    console.log(location)
+    getDownloadURL(ref(storage, location))
+        .then((url) => {
+            document.getElementById(destination).src = url
+        })
+}
+*/
