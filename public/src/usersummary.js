@@ -124,7 +124,7 @@ function addRowHandlers() {
         var createClickHandler = function(row) {
             return function() {
             sessionStorage.setItem('userID', IDs[row.rowIndex - 1].id)
-            window.location = 'edituser.html'
+            window.location = 'viewuser.html'
             }
         }
         currentRow.onclick = createClickHandler(currentRow);

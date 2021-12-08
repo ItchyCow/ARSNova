@@ -11,7 +11,9 @@ module.exports = {
     eventsummary: './public/src/eventsummary.js',
     usersummary: './public/src/usersummary.js',
     addevent: './public/src/addevent.js',
-    editevent: './public/src/editevent.js'
+    editevent: './public/src/editevent.js',
+    viewuser: './public/src/viewuser.js',
+    edituser: './public/src/viewuser.js'
   },
   output: {
     path: path.resolve(__dirname, 'public/bundles'),
