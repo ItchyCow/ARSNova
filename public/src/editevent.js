@@ -144,7 +144,7 @@ QRCode.toCanvas(canvas, 'sample text', function (error) {
 
 /*
 // qrcode functions
-function getQRCodeUrl(destination) {
+function getProfileImageUrl(destination) {
     var location = "qrcodes/" + userID
     console.log(location)
     getDownloadURL(ref(storage, location))
