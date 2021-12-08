@@ -235,6 +235,7 @@ input[type=time]::-webkit-datetime-edit-hour-field {
   background-color: #f1f1f1;
   border-radius: 15%;
   padding: 19px 13px;
+  color: black;
 }
 
 /* Minute */
@@ -242,6 +243,7 @@ input[type=time]::-webkit-datetime-edit-minute-field {
   background-color: #f1f1f1;
   border-radius: 15%;
   padding: 19px 13px;
+  color: black;
 }
 
 /* AM/PM */
