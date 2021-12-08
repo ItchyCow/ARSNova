@@ -9,6 +9,7 @@ module.exports = {
     editprofile: './public/src/editprofile.js',
     profilepage: './public/src/profilepage.js',
     eventsummary: './public/src/eventsummary.js',
+    usersummary: './public/src/usersummary.js',
     addevent: './public/src/addevent.js',
     editevent: './public/src/editevent.js'
   },
