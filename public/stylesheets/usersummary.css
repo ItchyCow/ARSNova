@@ -1,6 +1,8 @@
+@import url('http://fonts.cdnfonts.com/css/aileron');
+
 body {
     margin: 0;
-    font-family: "Aileron";
+    font-family: "Aileron", sans-serif;
   }  
   /*start of sidebar codes*/
   .sidebar {

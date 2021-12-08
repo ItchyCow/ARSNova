@@ -1,5 +1,11 @@
 <html>
     <head>
+      <link href="http://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
+                
+      <style>
+        @import url('http://fonts.cdnfonts.com/css/aileron');
+      </style>
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="./stylesheets/addevent.css">
         <title>
@@ -43,11 +49,11 @@
     <!-- Form Action Page (Where data will be stored)-->
     <form class="add">
       
-      <label for="name">Name of Event </label> 
+      <label for="name" class="required">Name of Event </label> 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="text" id="name" name="name" size="50"><br><br>
 
-      <label for="location">Location </label> 
+      <label for="location" class="required">Location </label> 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <input type="text" id="location" name="location" size="30"><br><br>
@@ -63,11 +69,11 @@
       
       <br><br>
 
-      <label for="fine">Fine </label> 
+      <label for="fine" class="required" >Fine </label> 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="text" id="fine" name="fine" size="10">
+      <input type="text" id="fine" name="fine" size="10" value="0">
       <br><br>
 
       <label for="time_start">Time Start:</label>

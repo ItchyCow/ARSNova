@@ -1,5 +1,7 @@
+@import url('http://fonts.cdnfonts.com/css/aileron');
+
 html * {
-    font-family: 'Aileron' !important;
+    font-family: 'Aileron', sans-serif !important;
     font-size: 30px;
     color: #00BBD1;
 }
