@@ -36,6 +36,7 @@ const storage = getStorage()
 
 //global vars
 var userID
+var eventIDQRCode
 
 //firebase functions
 onAuthStateChanged(auth, (user) => {
@@ -92,9 +93,10 @@ const colRef = collection(db, 'event')
 const eventID = sessionStorage.getItem('eventID')
 console.log(eventID)
 
-function getEventFromFirestore(uid) {
-    var docRef = doc(db, "event", uid)
-    var docSnap = getDoc(docRef).then((snapshot) => {
+
+var docRef = doc(db, "event", eventID)
+getDoc(docRef)
+    .then((snapshot) => {
         // Code here 
         // attribute = value.data().attribute
         document.getElementById("name").value = snapshot.data().name
@@ -106,13 +108,16 @@ function getEventFromFirestore(uid) {
         document.getElementById("date").value = snapshot.data().date
         document.getElementById("availability").value = snapshot.data().availability
 
-        
-        return snapshot
+        getQRCode('qrcode')
 
-    })
-}
 
-getEventFromFirestore(eventID)
+        //return snapshot
+
+})
+
+
+
+//getEventFromFirestore(eventID)
 
 const saveChanges = document.querySelector('.edit')
 saveChanges.addEventListener('submit', (e) => {
@@ -147,21 +152,20 @@ saveChanges.addEventListener('submit', (e) => {
 var QRCode = require('qrcode')
 var canvas = document.getElementById('qrcode')
 
-QRCode.toCanvas(canvas, 'sample text', function (error) {
+QRCode.toCanvas(canvas, getQRCode, function (error) {
     if (error) console.log(error)
     console.log('Success on QRCode!')
 })
 
 
 
-/*
+
 // qrcode functions
-function getProfileImageUrl(destination) {
-    var location = "qrcodes/" + userID
+function getQRCode(destination) {
+    var location = "qrcodes/" + eventID
     console.log(location)
     getDownloadURL(ref(storage, location))
         .then((url) => {
             document.getElementById(destination).src = url
         })
 }
-*/
