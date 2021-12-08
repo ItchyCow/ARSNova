@@ -26,14 +26,10 @@
             </div>
 
             <div class="profile">
-                    <a href="profilepage.html">
-                        <img src = "resources/images/default.png" class = "profilepic" id = "addevent_pp">
-                        <p class="name" id="profname">
-                            Kiara Marie B. Vicencio
-                            <br>
-                            kiarabvicencio@su.edu.ph
-                        </p>
-                    </a>
+                <a href="profilepage.html">
+                    <img src = "resources/images/default.png" class = "profilepic" id = "profile_pp">
+                    <p class="name" id="profname"></p>
+                </a>
             </div>
         </div>
 
@@ -49,97 +45,78 @@
 
             <!--Main Content-->
 
-            <img src = "resources/images/default.png" class = "avatar" id = "profilepage_pp">
-            <div id="nameuser" class="nameuser">Kiara Marie B. Vicencio</div>
+            <img src = "resources/images/default.png" class = "avatar" id = "view_pp">
+            <div id="nameuser" class="nameuser"></div>
             <br><br><br><br><br><br><br>
 
             <!--<div class="description">-->
                 <div class="leftdiv">
                     <img src="resources/icons/mortarboard.png" class="iconprofile" style="margin-right: 5px;">
-                        <div id="yrlvl" class="subdetails" style="margin-right: 30px;">BSCS-III</div>
+                        <div id="yrlvl" class="subdetails" style="margin-right: 30px;"></div>
                                         
                     <img src="resources/icons/email.png" class="iconprofile" style="margin-right: 5px;">
-                        <div id="useremail" class="subdetails" syle="margin-right: 5px;">kiarabvicencio@su.edu.ph</div>  
+                        <div id="useremail" class="subdetails" syle="margin-right: 5px;"></div>  
                 </div>              
             <!--</div>-->
         
             <!--Button-->
 
             <div class="buttonspacing">
-                <button onclick="document.location=''" class="button">Delete User</button>
-                &nbsp;
-                <button onclick="document.location='edituser.html'" class="button">Edit User</button>
+                <div>
+                    <button onclick="document.location=''" class="button">Delete User</button>
+                </div>
+                <div class="btn2">
+                    <button onclick="document.location='edituser.html'" class="button">Edit User</button>
+                </div>
             </div>
 
             <!--User details at the left-->
 
             <div class="userdetails">
-
-                <table class="usertable">
-                    <thead>
+                <div class="sidedetails">
+                    <div class="type">
+                        <h1>Type of User</h1>
+                        <p class="subtext" id='type'></p>
+                    </div>
+                    <div class="bio">
+                        <h1>Bio</h1>
+                        <p class="subtext" id='bio'></p>
+                    </div>
+                    <div class="inc">
+                        <h1>Incentives</h1>
+                        <p class="subtext" id='incentives'></p>
+                    </div>
+                    <div class="bal">
+                        <h1>Balance</h1>
+                        <p class="subtext" id='balance'></p>
+                    </div>
+                    <div class="stat">
+                        <h1>Status</h1>
+                        <p class="subtext" id=status></p>
+                    </div>
+                </div>
+                <div class="container">
+                    <table class="usertable">
+                        <colgroup>
+                            <col class="event">
+                            <col class="attendance">
+                            <col class="fines">
+                        </colgroup>
                         <tr>
                             <th>Event</th>
                             <th>Attendance</th>
                             <th>Fines</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Morining Devotion</td>
-                            <td>ABSENT</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Success in the Digital Landscape</td>
-                            <td>ABSENT</td>
-                            <td>50.00</td>
-                        </tr>
-                        <tr>
-                            <td>Speed Typing Competition</td>
-                            <td>ABSENT</td>
-                            <td>25.00</td>
-                        </tr>
-                        <tr>
-                            <td>Balik Talent Webminar</td>
-                            <td>PRESENT</td>
-                            <td>0.00</td>
-                        </tr>
-                        <tr>
-                            <td>Minecraft Scavenger Hunt</td>
-                            <td>ABSENT</td>
-                            <td>25.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="sidedetails">
-                    <div class="summary">
-                        <h2>Type of User</h2>
-                        <p class="subtext">Regular</p>
-                    </div>
-                    <div class="summary">
-                        <h2>Bio</h2>
-                        <p class="subtext">Sic Parvis Magna</p>
-                    </div>
-                    <div class="summary">
-                        <h2>Incentives</h2>
-                        <p class="subtext">0.00</p>
-                    </div>
-                    <div class="summary">
-                        <h2>Balance</h2>
-                        <p class="subtext">420.00</p>
-                    </div>
-                    <div class="summary">
-                        <h2>Status</h2>
-                        <p class="subtext">NOT CLEARED</p>
-                    </div>
+                        <tbody class="attendancedata">
+                            <tr>
+                                <td colspan="3" class="loading_message">LOADING DATA</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                
-
             </div>
 
         </div>
-            
+    <script src="bundles/viewuser.js"></script>
     </body>
 </html>

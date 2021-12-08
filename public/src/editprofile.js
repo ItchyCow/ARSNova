@@ -1,19 +1,16 @@
 import { initializeApp } from 'firebase/app'
 import {
     getFirestore, collection, onSnapshot,
-    addDoc, deleteDoc, doc,
-    query, where,
-    orderBy,
-    getDoc, updateDoc
+    doc, getDoc, updateDoc
 } from 'firebase/firestore'
 import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword, signOut,
+    getAuth, signOut,
     onAuthStateChanged
 } from 'firebase/auth'
-import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
-
+import {
+    getStorage, ref,
+    getDownloadURL
+} from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMjNRz6ccicva3bAuQ07MN-xniNSCk0_A",

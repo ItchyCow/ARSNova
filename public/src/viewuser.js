@@ -34,3 +34,58 @@ initializeApp(firebaseConfig)
 const db = getFirestore()
 const auth = getAuth()
 const storage = getStorage()
+
+//global vars
+var viewuserID = sessionStorage.getItem('userID')
+const userRef = doc(db, 'user', viewuserID)
+var userID
+
+//firebase functions
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        userID = user.uid
+        getProfileImageUrl('profile_pp', userID)
+        const dataRef = doc(db, 'user', userID)
+        onSnapshot(dataRef, (doc) => {
+            document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
+        })
+    }
+    else {
+        window.location = 'index.html'
+    }
+})
+
+onSnapshot(userRef, (doc) => {
+    let user = doc.data()
+
+    displayUserData(user)
+    getProfileImageUrl('view_pp', viewuserID)
+})
+
+//customfunctions
+function getProfileImageUrl(destination, ID) {
+    var location = "images/" + ID
+    getDownloadURL(ref(storage, location))
+        .then((url) => {
+            document.getElementById(destination).src = url
+        })
+}
+
+function displayUserData(vu) {
+    let balance = parseFloat(vu.fines) - parseFloat(vu.incentives)
+    let status
+    if (vu.clearance_status === true) {
+        status = 'CLEARED'
+    } else {
+        status = 'NOT CLEARED'
+    }
+
+    document.getElementById('nameuser').innerHTML = vu.fname + " " + vu.mi + ". " + vu.lname
+    document.getElementById('yrlvl').innerHTML = vu.course + "-" + vu.year_level
+    document.getElementById('useremail').innerHTML = vu.email
+    document.getElementById('type').innerHTML = vu.type
+    document.getElementById('bio').innerHTML = vu.bio
+    document.getElementById('incentives').innerHTML = vu.incentives
+    document.getElementById('balance').innerHTML = balance
+    document.getElementById('status').innerHTML = status
+}
