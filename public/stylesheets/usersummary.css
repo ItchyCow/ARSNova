@@ -168,7 +168,7 @@ a {
   margin: 2px 0px;
   display: inline-block;
   position: absolute;
-  top: 9%;
+  top: 70px;
   height: 10px;
   float: none;
   padding: 0;
@@ -232,3 +232,73 @@ input[type="submit"]:hover {
 /*end of Search box*/  
 
 /* End of Main Content Code */
+
+/* Table Code */
+
+.container {
+  margin-top: 10px;
+  overflow: scroll;
+  width: 100%;
+  height: 80.5%;
+}
+
+/* Scrollbar Width */
+.container::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar Track */
+.container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Scrollbar Handle */
+.container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Scrollbar Handle on hover */
+.container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.users, .userdata {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.users th {
+  font-size: 25px;
+}
+
+colgroup .lname, .fname {
+  width: 20%;
+}
+
+colgroup .mi {
+  width: 5%;
+}
+
+colgroup .year, .course, .type, .balance, .status {
+  width: 9%;
+}
+
+tr {
+  line-height: 25px;
+  text-align: left;
+}
+
+td {
+  line-height: 25px;
+  font-size: 18px;
+}
+
+.loading_message {
+  height: 100%;
+  text-align: center;
+  font-size: 50px !important;
+}
+
+tbody td:hover {
+  cursor: pointer;
+}

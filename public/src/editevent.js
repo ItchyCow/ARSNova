@@ -28,7 +28,6 @@ const firebaseConfig = {
 //init firebase app
 initializeApp(firebaseConfig)
 
-
 //init services
 const db = getFirestore()
 const auth = getAuth()
@@ -36,13 +35,13 @@ const storage = getStorage()
 
 //global vars
 var userID
+var eventIDQRCode
 
 //firebase functions
 onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid
         getProfileImageUrl('editevent_pp')
-        console.log('user status changed:', userID)
         const dataRef = doc(db, 'user', userID)
         onSnapshot(dataRef, (doc) => {
             document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
@@ -50,14 +49,12 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         window.location = 'index.html'
-        console.log('user not signed in')
     }
 })
 
 //custom functions
 function getProfileImageUrl(destination) {
     var location = "images/" + userID
-    console.log(location)
     getDownloadURL(ref(storage, location))
         .then((url) => {
             document.getElementById(destination).src = url
@@ -69,11 +66,9 @@ const logoutButton = document.querySelector('.lobtn')
 logoutButton.addEventListener('click', () => {
     signOut(auth)
         .then(() => {
-            console.log('user signed out');
             window.location = 'index.html'
         })
         .catch(err => {
-            console.log(err)
         })
 })
 
@@ -86,17 +81,14 @@ const colRef = collection(db, 'event')
     snapshot.docs.forEach((doc) => {
         event.push({ ...doc.data(), id: doc.id})
     })
-    console.log(event)
 })
 
 const eventID = sessionStorage.getItem('eventID')
-console.log(eventID)
 
-function getEventFromFirestore(uid) {
-    var docRef = doc(db, "event", uid)
-    var docSnap = getDoc(docRef).then((snapshot) => {
-        // Code here 
-        // attribute = value.data().attribute
+
+var docRef = doc(db, "event", eventID)
+getDoc(docRef)
+    .then((snapshot) => {
         document.getElementById("name").value = snapshot.data().name
         document.getElementById("location").value = snapshot.data().location
         document.getElementById("type").value = snapshot.data().type
@@ -106,50 +98,43 @@ function getEventFromFirestore(uid) {
         document.getElementById("date").value = snapshot.data().date
         document.getElementById("availability").value = snapshot.data().availability
 
-        console.log("adasd")
-        return snapshot
-
-    })
-}
-
-getEventFromFirestore(eventID)
+        getQRCode('qrcode')
+})
 
 const saveChanges = document.querySelector('.edit')
 saveChanges.addEventListener('submit', (e) => {
     e.preventDefault()
 
     let docRef = doc(db,'event', eventID)
+
+    if (document.getElementById("availability").value === 'true') {
+        var status = true
+      } else {
+         var status = false
+      }
+
+    var fine = parseFloat(document.getElementById("fine").value)
+
     updateDoc(docRef, {
         name: document.getElementById("name").value,
         location: document.getElementById("location").value,
         type: document.getElementById("type").value,
-        fine: document.getElementById("fine").value,
+        fine: fine,
         time_start:  document.getElementById("time_start").value,
         time_end: document.getElementById("time_end").value,
         date: document.getElementById("date").value,
-        availability: document.getElementById("availability").value
+        availability: status
     })
     .then(() => {
         window.location = 'eventsummary.html'
     })
 })
 
-var QRCode = require('qrcode')
-var canvas = document.getElementById('qrcode')
-
-QRCode.toCanvas(canvas, 'sample text', function (error) {
-    if (error) console.log(error)
-    console.log('Success on QRCode!')
-})
-
-/*
 // qrcode functions
-function getProfileImageUrl(destination) {
-    var location = "qrcodes/" + userID
-    console.log(location)
+function getQRCode(destination) {
+    var location = "qrcodes/" + eventID
     getDownloadURL(ref(storage, location))
         .then((url) => {
             document.getElementById(destination).src = url
         })
 }
-*/
