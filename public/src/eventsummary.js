@@ -14,7 +14,7 @@ import {
 } from 'firebase/auth'
 import { 
     getStorage, ref, 
-    getDownloadURL
+    getDownloadURL, deleteObject
 } from "firebase/storage"
 
 const firebaseConfig = {
@@ -59,6 +59,7 @@ onAuthStateChanged(auth, (user) => {
 })
 
 onSnapshot(q, (snapshot) => {
+    IDs = []
     let event = []
     snapshot.docs.forEach((doc) => {
         event.push({ ...doc.data()})
@@ -156,21 +157,50 @@ function addRowHandlers() {
     }
 }
 
-document.getElementById('deleteEvent').addEventListener('click', (e) => {
+var modal = document.getElementById("myModal")
+var deleteEvent = document.getElementById('deleteEvent')
+deleteEvent.onclick = function() {
+    modal.style.display = "block"
+}
+
+var cancel = document.getElementById('cancelDelete')
+cancel.onclick = function() {
+    modal.style.display = "none"
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none"
+    }
+}
+
+var confirmDelete = document.getElementById('confirmDelete')
+confirmDelete.addEventListener('click', (e) => {
     e.preventDefault()
 
     let checks = document.getElementsByName('ticks')
-    let indexlist = []
+    let IDlist = []
 
     var j = 0
     for (var i = 0; i < checks.length; i++) {
         if(checks[i].checked) {
-            indexlist[j] = checks[i].parentNode.parentNode.rowIndex - 1
+            IDlist[j] = IDs[checks[i].parentNode.parentNode.rowIndex - 1].id
             j++
         }
+        console.log(IDlist)
     }
 
-    for (i = 0; i < indexlist.length; i++) {
-        console.log(IDs[indexlist[i]].id)
+    for (i = 0; i < IDlist.length; i++) {
+        var current = IDlist[i]
+        console.log(current)
+        const eventRef = doc(db, 'event', current)
+        deleteDoc(eventRef)
+            .then(() => {
+                var loc = 'qrcodes/' + current
+                const qrRef = ref(storage, loc)
+                deleteObject(qrRef)
+            })
     }
+
+    modal.style.display = 'none'
 })
