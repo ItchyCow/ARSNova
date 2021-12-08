@@ -94,7 +94,7 @@ addEventForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
     // When the user clicks the button, open the modal 
-    btn.onclick = function() {
+    
     if( document.getElementById('name').value != '' &&
         document.getElementById('location').value != '' &&
         document.getElementById('type').value != '' &&
@@ -138,15 +138,9 @@ addEventForm.addEventListener('submit', (e) => {
     } else {
         alert('All fields are required.');
     }
-}
 
-    
+  
 })
-
-
-
-
-
 
 async function addEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
     var docRef = await addDoc(collection(db, "event"), {
