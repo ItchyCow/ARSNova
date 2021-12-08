@@ -94,7 +94,7 @@ addEventForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
     // When the user clicks the button, open the modal 
-    
+    btn.onclick = function() {
     if( document.getElementById('name').value != '' &&
         document.getElementById('location').value != '' &&
         document.getElementById('type').value != '' &&
@@ -106,6 +106,21 @@ addEventForm.addEventListener('submit', (e) => {
 
         modal.style.display = "block";
 
+        function uploadQR(event_id) {
+            var QRCode = require('qrcode')
+            var location = "qrcodes/"+ event_id
+            console.log(location)
+            var storageRef = ref(storage, location)
+
+            QRCode.toDataURL(event_id, {version: 2}, function (err, url) {
+             console.log(url);
+             uploadString(storageRef, url, 'data_url').then((snapshot) => {
+             console.log("Success")
+                })
+            })
+    
+        }
+
         addEventtoFirestore(
             addEventForm.availability.value,
             addEventForm.date.value,
@@ -116,31 +131,26 @@ addEventForm.addEventListener('submit', (e) => {
             addEventForm.time_start.value,
             addEventForm.type.value,
         )
+
+        
         .then(() => {
             addEventForm.reset()
         })
 
-        function uploadQR(event_id) {
-            var QRCode = require('qrcode')
-            var location = "qrcodes/"+ event_id
-            console.log(location)
-            var storageRef = ref(storage, location)
         
-            QRCode.toDataURL(event_id, {version: 2}, function (err, url) {
-                console.log(url);
-                uploadString(storageRef, url, 'data_url').then((snapshot) => {
-                    console.log("Success")
-                })
-            })
-            
-        }
-        
-    } else {
+
+    } 
+    else {
         alert('All fields are required.');
     }
+}
 
-  
+    
 })
+
+
+
+
 
 async function addEventtoFirestore(availability, date, fine, location, name, time_end, time_start, type) {
     var docRef = await addDoc(collection(db, "event"), {
