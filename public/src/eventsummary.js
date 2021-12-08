@@ -3,7 +3,7 @@ import {
     getFirestore, collection, onSnapshot,
     addDoc, deleteDoc, doc,
     query, where,
-    orderBy,
+    orderBy, Unsubscribe,
     getDoc, updateDoc
 } from 'firebase/firestore'
 import {
@@ -37,6 +37,7 @@ const storage = getStorage()
 
 //global vars
 const eventRef = collection(db, 'event')
+const attendRef = collection(db, 'attendance')
 const q = query(eventRef, orderBy('name', 'asc'))
 var IDs = []
 var userID
@@ -199,8 +200,27 @@ confirmDelete.addEventListener('click', (e) => {
                 var loc = 'qrcodes/' + current
                 const qrRef = ref(storage, loc)
                 deleteObject(qrRef)
+                    .then(() => {
+                        cascadeDeleteAttendance(current)
+                    })
             })
     }
 
     modal.style.display = 'none'
 })
+
+function cascadeDeleteAttendance(currentID) {
+    var find =  query(attendRef, where('event_id', '==', currentID))
+    console.log(find)
+    let attendances = []
+    onSnapshot(find, (snapshot) => {
+        snapshot.docs.forEach((doc) => {
+            attendances.push({ id: doc.id})
+        })
+        console.log(attendances)
+        for (var i = 0; i < attendances.length; i++) {
+            const attendDocRef = doc(db, 'attendance', attendances[i].id)
+            deleteDoc(attendDocRef)
+        }
+    })   
+}
