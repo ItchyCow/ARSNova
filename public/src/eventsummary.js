@@ -47,7 +47,6 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid
         getProfileImageUrl('evsum_pp')
-        console.log('user status changed:', userID)
         const dataRef = doc(db, 'user', userID)
         onSnapshot(dataRef, (doc) => {
             document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
@@ -55,7 +54,6 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         window.location = 'index.html'
-        console.log('user not signed in')
     }
 })
 
@@ -66,19 +64,16 @@ onSnapshot(q, (snapshot) => {
         event.push({ ...doc.data()})
         IDs.push({ id: doc.id})
     })
-    resetTable()
+    clearTable()
     for (var i in event) {
         displayToTable(event[i])
     }
-    console.log(event)
-    console.log(IDs)
 })
 
 const logoutButton = document.querySelector('.lobtn')
 logoutButton.addEventListener('click', () => {
     signOut(auth)
         .then(() => {
-            console.log('user signed out');
             window.location = 'index.html'
         })
         .catch(err => {
@@ -89,7 +84,6 @@ logoutButton.addEventListener('click', () => {
 //custom functions
 function getProfileImageUrl(destination) {
     var location = "images/" + userID
-    console.log(location)
     getDownloadURL(ref(storage, location))
         .then((url) => {
             document.getElementById(destination).src = url
@@ -116,7 +110,7 @@ function displayToTable(event) {
     addRowHandlers()
 }
 
-function resetTable() {
+function clearTable() {
     document.getElementById('eventsdata').innerHTML = ""
 }
 
@@ -188,12 +182,10 @@ confirmDelete.addEventListener('click', (e) => {
             IDlist[j] = IDs[checks[i].parentNode.parentNode.rowIndex - 1].id
             j++
         }
-        console.log(IDlist)
     }
 
     for (i = 0; i < IDlist.length; i++) {
         var current = IDlist[i]
-        console.log(current)
         const eventRef = doc(db, 'event', current)
         deleteDoc(eventRef)
             .then(() => {
@@ -205,22 +197,67 @@ confirmDelete.addEventListener('click', (e) => {
                     })
             })
     }
-
     modal.style.display = 'none'
+    resetTable()
 })
 
 function cascadeDeleteAttendance(currentID) {
     var find =  query(attendRef, where('event_id', '==', currentID))
-    console.log(find)
     let attendances = []
     onSnapshot(find, (snapshot) => {
         snapshot.docs.forEach((doc) => {
             attendances.push({ id: doc.id})
         })
-        console.log(attendances)
         for (var i = 0; i < attendances.length; i++) {
             const attendDocRef = doc(db, 'attendance', attendances[i].id)
             deleteDoc(attendDocRef)
         }
     })   
+}
+
+const search = document.getElementById('searchbox')
+search.addEventListener('submit', (e) => {
+    e.preventDefault()
+    
+    let text = document.getElementById('search').value
+    var sq = query(eventRef, where('name', '==', text))
+    onSnapshot(sq, (snapshot) => {
+        IDs = []
+        let event = []
+        snapshot.docs.forEach((doc) => {
+            event.push({ ...doc.data()})
+            IDs.push({ id: doc.id})
+        })
+        clearTable()
+        for (var i in event) {
+            displayToTable(event[i])
+        }
+    })
+    
+})
+
+search.addEventListener('input', (e) => {
+    e.preventDefault()
+    
+    let text = document.getElementById('search').value
+
+    if (text == '') {
+        resetTable()
+    }
+})
+
+function resetTable() {
+    var reset = query(eventRef, orderBy('name', 'asc'))
+        onSnapshot(reset, (snapshot) => {
+            IDs = []
+            let event = []
+            snapshot.docs.forEach((doc) => {
+                event.push({ ...doc.data()})
+                IDs.push({ id: doc.id})
+            })
+            clearTable()
+            for (var i in event) {
+                displayToTable(event[i])
+            }
+        })
 }
