@@ -171,14 +171,14 @@ a {
   height: 15px;
   width: auto;
   margin-right: 5;
-  float: left;
+  float: left; 
 }
 
 .button{
   background-color: #00BBD1;
   border: none;
   color: FCF8F6;
-  padding: 10 20 10 20;
+  padding: 10 30 10 30;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
@@ -194,4 +194,18 @@ a {
 
 .profemail {
   float: left;
+}
+
+.subdetails{
+  float: left;
+}
+
+.leftdiv{
+  margin-bottom: 20;
+  width: 200%;
+}
+
+.description {
+  width: inherit;
+ height: inherit;
 }
