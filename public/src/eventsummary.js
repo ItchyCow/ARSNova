@@ -84,11 +84,6 @@ logoutButton.addEventListener('click', () => {
         })
 })
 
-/*const deleteEvents = document.getElementById('btn2')
-deleteEvents.addEventListener('submit', (e) => {
-    e.preventDefault()
-})*/
-
 //custom functions
 function getProfileImageUrl(destination) {
     var location = "images/" + userID
@@ -140,55 +135,42 @@ document.getElementById('clear').onclick = function clearAllBoxes() {
     }
 }
 
-/*function addRowHandlers() {
-    var theTbl = document.getElementById('events')
-    for(var i = 0; i < theTbl.length; i++)
-    {
-        var currentRow = theTbl.rows[i]
-        for(var j = 0; j<theTbl.rows[i].cells.length; j++)
-        {
-            if (j != 0) {
-                currentRow.onclick = console.log('hello')
-            }
-        }
-    }
-}*/
-
 function addRowHandlers() {
     var table = document.getElementById('events')
     var rows = table.getElementsByTagName('tr')
     for (var i = 0; i < rows.length; i++) {
-        var currentRow = table.rows[i]
-        var createClickHandler = function(row) {
-            return function() {
-            sessionStorage.setItem('eventID', IDs[row.rowIndex - 1].id)
-            window.location = 'editevent.html'
+        for(var j = 0; j < table.rows[i].cells.length; j++) {
+            if (j != 0) {
+                var currentRow = table.rows[i]
+                var currentCell = table.rows[i].cells[j]
+                var createClickHandler = function(row) {
+                    return function() {
+                    sessionStorage.setItem('eventID', IDs[row.rowIndex - 1].id)
+                    window.location = 'editevent.html'
+                    }
+                }
+                currentCell.onclick = createClickHandler(currentRow);
             }
-        }
-        currentRow.onclick = createClickHandler(currentRow);
-    }
-}
-
-var flag = true
-
-window.onload(changeState())
-function changeState() {
-    if (flag) {
-        var checks = document.getElementsByTagName('input')
-        for (var i = 0; i < checks.length; i++) {
-            if(checks[i].hasAttribute()) {
-                checks[i].disabled = true
-            }
-        }
-
-        
-    } else {
-        var checks = document.getElementsByTagName('input')
-
-        for (var i = 0; i < checks.length; i++) {
-            if(checks[i].hasAttribute()) {
-                checks[i].disabled = false
-            }
+            
         }
     }
 }
+
+document.getElementById('deleteEvent').addEventListener('click', (e) => {
+    e.preventDefault()
+
+    let checks = document.getElementsByName('ticks')
+    let indexlist = []
+
+    var j = 0
+    for (var i = 0; i < checks.length; i++) {
+        if(checks[i].checked) {
+            indexlist[j] = checks[i].parentNode.parentNode.rowIndex - 1
+            j++
+        }
+    }
+
+    for (i = 0; i < indexlist.length; i++) {
+        console.log(IDs[indexlist[i]].id)
+    }
+})
