@@ -93,19 +93,38 @@ const addEventForm = document.querySelector('.add')
 addEventForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    addEventtoFirestore(
-        addEventForm.availability.value,
-        addEventForm.date.value,
-        addEventForm.fine.value,
-        addEventForm.location.value,
-        addEventForm.name.value,
-        addEventForm.time_end.value,
-        addEventForm.time_start.value,
-        addEventForm.type.value,
-    )
-    .then(() => {
-        addEventForm.reset()
-    })
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+    if( document.getElementById('name').value != '' &&
+        document.getElementById('location').value != '' &&
+        document.getElementById('type').value != '' &&
+        document.getElementById('fine').value != '' &&
+        document.getElementById('time_start').value != '' &&
+        document.getElementById('time_end').value != '' &&
+        document.getElementById('date').value != '' &&
+        document.getElementById('availability').value != '') {
+
+        modal.style.display = "block";
+
+        addEventtoFirestore(
+            addEventForm.availability.value,
+            addEventForm.date.value,
+            addEventForm.fine.value,
+            addEventForm.location.value,
+            addEventForm.name.value,
+            addEventForm.time_end.value,
+            addEventForm.time_start.value,
+            addEventForm.type.value,
+        )
+        .then(() => {
+            addEventForm.reset()
+        })
+    } else {
+        alert('All fields are required.');
+    }
+}
+
+    
 })
 
 
@@ -156,10 +175,7 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
+
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
