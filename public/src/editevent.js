@@ -119,15 +119,25 @@ saveChanges.addEventListener('submit', (e) => {
     e.preventDefault()
 
     let docRef = doc(db,'event', eventID)
+
+    if (document.getElementById("availability").value === 'true') {
+        var status = true
+      } else {
+         var status = false
+      }
+
+    //var status = Boolean(addEventForm.availability.value)
+    var fine = parseFloat(document.getElementById("fine").value)
+
     updateDoc(docRef, {
         name: document.getElementById("name").value,
         location: document.getElementById("location").value,
         type: document.getElementById("type").value,
-        fine: document.getElementById("fine").value,
+        fine: fine,
         time_start:  document.getElementById("time_start").value,
         time_end: document.getElementById("time_end").value,
         date: document.getElementById("date").value,
-        availability: document.getElementById("availability").value
+        availability: status
     })
     .then(() => {
         window.location = 'eventsummary.html'

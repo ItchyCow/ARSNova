@@ -104,31 +104,38 @@ addEventForm.addEventListener('submit', (e) => {
         document.getElementById('date').value != '' &&
         document.getElementById('availability').value != '') {
 
-        modal.style.display = "block";
+       modal.style.display = "block";
+
+        if (addEventForm.availability.value === 'true') {
+            var status = true
+          } else {
+             var status = false
+          }
+
+        //var status = Boolean(addEventForm.availability.value)
+        var fine = parseFloat(addEventForm.fine.value)
+
+        console.log("hello")
 
         addEventtoFirestore(
-            addEventForm.availability.value,
+            status,
             addEventForm.date.value,
-            addEventForm.fine.value,
+            fine,
             addEventForm.location.value,
             addEventForm.name.value,
             addEventForm.time_end.value,
             addEventForm.time_start.value,
             addEventForm.type.value,
         )
-        .then(() => {
-            addEventForm.reset()
-        })
-    } else {
-        alert('All fields are required.');
-    }
-}
+            .then(() => {
+                addEventForm.reset()
+            })
+        }       else {
+             alert('All fields are required.');
+            }   
+    }     
 
-    
 })
-
-
-
 
 function uploadQR(event_id) {
     var QRCode = require('qrcode')
@@ -174,8 +181,6 @@ var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
-
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
