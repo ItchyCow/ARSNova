@@ -160,18 +160,20 @@ deleteEvent.onclick = function() {
 
 var cancel = document.getElementById('cancelDelete')
 cancel.onclick = function() {
-    modal.style.display = "none"
+    closeModal()
 }
 
 window.onclick = function(event) {
     if (event.target == modal) {
-      modal.style.display = "none"
+        closeModal()
     }
 }
 
 var confirmDelete = document.getElementById('confirmDelete')
 confirmDelete.addEventListener('click', (e) => {
     e.preventDefault()
+
+    closeModal()
 
     let checks = document.getElementsByName('ticks')
     let IDlist = []
@@ -188,18 +190,16 @@ confirmDelete.addEventListener('click', (e) => {
         var current = IDlist[i]
         const eventRef = doc(db, 'event', current)
         deleteDoc(eventRef)
-            .then(() => {
-                var loc = 'qrcodes/' + current
-                const qrRef = ref(storage, loc)
-                deleteObject(qrRef)
-                    .then(() => {
-                        cascadeDeleteAttendance(current)
-                    })
-            })
+        var loc = 'qrcodes/' + current
+        const qrRef = ref(storage, loc)
+        deleteObject(qrRef)
+        cascadeDeleteAttendance(current)
     }
-    modal.style.display = 'none'
-    resetTable()
 })
+
+function closeModal() {
+    modal.style.display = 'none'
+}
 
 function cascadeDeleteAttendance(currentID) {
     var find =  query(attendRef, where('event_id', '==', currentID))
