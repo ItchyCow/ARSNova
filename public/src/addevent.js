@@ -94,18 +94,7 @@ addEventForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
     // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-    if( document.getElementById('name').value != '' &&
-        document.getElementById('location').value != '' &&
-        document.getElementById('type').value != '' &&
-        document.getElementById('fine').value != '' &&
-        document.getElementById('time_start').value != '' &&
-        document.getElementById('time_end').value != '' &&
-        document.getElementById('date').value != '' &&
-        document.getElementById('availability').value != '') {
-
-       modal.style.display = "block";
-
+    
         if (addEventForm.availability.value === 'true') {
             var status = true
           } else {
@@ -114,8 +103,6 @@ addEventForm.addEventListener('submit', (e) => {
 
         //var status = Boolean(addEventForm.availability.value)
         var fine = parseFloat(addEventForm.fine.value)
-
-        console.log("hello")
 
         addEventtoFirestore(
             status,
@@ -128,13 +115,10 @@ addEventForm.addEventListener('submit', (e) => {
             addEventForm.type.value,
         )
             .then(() => {
+                modal.style.display = "block";
                 addEventForm.reset()
             })
-        }       else {
-             alert('All fields are required.');
-            }   
-    }     
-
+               
 })
 
 function uploadQR(event_id) {

@@ -106,7 +106,7 @@ function getEventFromFirestore(uid) {
         document.getElementById("date").value = snapshot.data().date
         document.getElementById("availability").value = snapshot.data().availability
 
-        console.log("adasd")
+        
         return snapshot
 
     })
@@ -151,6 +151,8 @@ QRCode.toCanvas(canvas, 'sample text', function (error) {
     if (error) console.log(error)
     console.log('Success on QRCode!')
 })
+
+
 
 /*
 // qrcode functions
