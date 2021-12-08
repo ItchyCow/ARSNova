@@ -28,7 +28,6 @@ const firebaseConfig = {
 //init firebase app
 initializeApp(firebaseConfig)
 
-
 //init services
 const db = getFirestore()
 const auth = getAuth()
@@ -43,7 +42,6 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid
         getProfileImageUrl('editevent_pp')
-        console.log('user status changed:', userID)
         const dataRef = doc(db, 'user', userID)
         onSnapshot(dataRef, (doc) => {
             document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
@@ -51,14 +49,12 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         window.location = 'index.html'
-        console.log('user not signed in')
     }
 })
 
 //custom functions
 function getProfileImageUrl(destination) {
     var location = "images/" + userID
-    console.log(location)
     getDownloadURL(ref(storage, location))
         .then((url) => {
             document.getElementById(destination).src = url
@@ -70,11 +66,9 @@ const logoutButton = document.querySelector('.lobtn')
 logoutButton.addEventListener('click', () => {
     signOut(auth)
         .then(() => {
-            console.log('user signed out');
             window.location = 'index.html'
         })
         .catch(err => {
-            console.log(err)
         })
 })
 
@@ -87,18 +81,14 @@ const colRef = collection(db, 'event')
     snapshot.docs.forEach((doc) => {
         event.push({ ...doc.data(), id: doc.id})
     })
-    console.log(event)
 })
 
 const eventID = sessionStorage.getItem('eventID')
-console.log(eventID)
 
 
 var docRef = doc(db, "event", eventID)
 getDoc(docRef)
     .then((snapshot) => {
-        // Code here 
-        // attribute = value.data().attribute
         document.getElementById("name").value = snapshot.data().name
         document.getElementById("location").value = snapshot.data().location
         document.getElementById("type").value = snapshot.data().type
@@ -109,15 +99,7 @@ getDoc(docRef)
         document.getElementById("availability").value = snapshot.data().availability
 
         getQRCode('qrcode')
-
-
-        //return snapshot
-
 })
-
-
-
-//getEventFromFirestore(eventID)
 
 const saveChanges = document.querySelector('.edit')
 saveChanges.addEventListener('submit', (e) => {
@@ -131,7 +113,6 @@ saveChanges.addEventListener('submit', (e) => {
          var status = false
       }
 
-    //var status = Boolean(addEventForm.availability.value)
     var fine = parseFloat(document.getElementById("fine").value)
 
     updateDoc(docRef, {
@@ -149,21 +130,9 @@ saveChanges.addEventListener('submit', (e) => {
     })
 })
 
-var QRCode = require('qrcode')
-var canvas = document.getElementById('qrcode')
-
-QRCode.toCanvas(canvas, getQRCode, function (error) {
-    if (error) console.log(error)
-    console.log('Success on QRCode!')
-})
-
-
-
-
 // qrcode functions
 function getQRCode(destination) {
     var location = "qrcodes/" + eventID
-    console.log(location)
     getDownloadURL(ref(storage, location))
         .then((url) => {
             document.getElementById(destination).src = url

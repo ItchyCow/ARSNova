@@ -3,8 +3,8 @@ body {
     font-family: 'Aileron', sans-serif;
                                                 
   }  
-  /*start of sidebar codes*/
 
+  /*start of sidebar codes*/
   .sidebar {
     margin: 0;
     padding: 0;
@@ -77,7 +77,6 @@ body {
 /*end of sidebar codes*/
 
 /*beginning of breadcrumb code*/
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -116,7 +115,6 @@ a {
   }
 
   /* Collapsed breadcrumbs */
-
 .collapsed li {
   overflow: hidden;
 }
@@ -143,49 +141,49 @@ a {
 /*end of breadcrumb code*/
 
 /* start of main content code*/
-  h2 {
-    margin-bottom: 0;
+h2 {
+  margin-bottom: 0;
+}
+
+p {
+  margin-top : 1%; 
+  padding-top:0;
+}
+  /* Style page content */
+  .main {
+    margin-left: 270px; /* Same as the width of the sidebar */
+    padding: 2px 10px;
   }
   
-  p {
-    margin-top : 1%; 
-    padding-top:0;
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
   }
-    /* Style page content */
-    .main {
-      margin-left: 270px; /* Same as the width of the sidebar */
-      padding: 2px 10px;
-    }
-    
-    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-    @media screen and (max-height: 450px) {
-      .sidenav {padding-top: 15px;}
-      .sidenav a {font-size: 18px;}
-    }
-    
-    
-    input[type]
-    {
-        border: 0;
-        border-bottom: 2px solid #96A1A8;
-        outline: 0;
-    }
   
-    select {
+  
+  input[type]
+  {
       border: 0;
       border-bottom: 2px solid #96A1A8;
       outline: 0;
-      height: 20px;
-      flex: 0 0 200px;
-      margin-left: 15px;
-      width: 60px
-    }
-  
-   
-  .required:after {
-    content:" *";
-    color: #00BBD1;
   }
+
+  select {
+    border: 0;
+    border-bottom: 2px solid #96A1A8;
+    outline: 0;
+    height: 20px;
+    flex: 0 0 200px;
+    margin-left: 15px;
+    width: 60px
+  }
+
+  
+.required:after {
+  content:" *";
+  color: #00BBD1;
+}
   
 .button {
   background-color: #00BBD1;

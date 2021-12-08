@@ -27,7 +27,6 @@ const firebaseConfig = {
 //init firebase app
 initializeApp(firebaseConfig)
 
-
 //init services
 const db = getFirestore()
 const auth = getAuth()
@@ -41,7 +40,6 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         userID = user.uid
         getProfileImageUrl('addevent_pp')
-        console.log('user status changed:', userID)
         const dataRef = doc(db, 'user', userID)
         onSnapshot(dataRef, (doc) => {
             document.getElementById('profname').innerHTML = doc.data().fname + " " + doc.data().lname + "<br>" + doc.data().email
@@ -49,14 +47,12 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         window.location = 'index.html'
-        console.log('user not signed in')
     }
 })
 
 //custom functions
 function getProfileImageUrl(destination) {
     var location = "images/" + userID
-    console.log(location)
     getDownloadURL(ref(storage, location))
         .then((url) => {
             document.getElementById(destination).src = url
@@ -68,11 +64,9 @@ const logoutButton = document.querySelector('.lobtn')
 logoutButton.addEventListener('click', () => {
     signOut(auth)
         .then(() => {
-            console.log('user signed out');
             window.location = 'index.html'
         })
         .catch(err => {
-            console.log(err)
         })
 })
 
@@ -85,7 +79,6 @@ const colRef = collection(db, 'event')
     snapshot.docs.forEach((doc) => {
         event.push({ ...doc.data(), id: doc.id})
     })
-    console.log(event)
 })
 
 // adding documents
@@ -101,7 +94,6 @@ addEventForm.addEventListener('submit', (e) => {
              var status = false
           }
 
-        //var status = Boolean(addEventForm.availability.value)
         var fine = parseFloat(addEventForm.fine.value)
 
         addEventtoFirestore(
@@ -124,13 +116,10 @@ addEventForm.addEventListener('submit', (e) => {
 function uploadQR(event_id) {
     var QRCode = require('qrcode')
     var location = "qrcodes/"+ event_id
-    console.log(location)
     var storageRef = ref(storage, location)
 
     QRCode.toDataURL(event_id, {version: 2}, function (err, url) {
-        console.log(url);
         uploadString(storageRef, url, 'data_url').then((snapshot) => {
-            console.log("Success")
         })
     })
     
@@ -177,10 +166,4 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-// end of modal code
-
-
-/// Sample function calles
-// document.getElementById("addevent_pp").src = getProfileImageUrl("yCLNQPosR3RUvKYd7tqOs73Rdc52")
-// addEventtoFirestore(true, "07/06/21", 25, "Zoom", "Sample Event", "whole day", "whole day", "University")
 
