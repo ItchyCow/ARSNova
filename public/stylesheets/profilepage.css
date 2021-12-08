@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: "Aileron";
+    font-family: "Aileron", sans-serif;
   }  
   /*start of sidebar codes*/
 
@@ -184,7 +184,6 @@ a {
   font-size: 16px;
   cursor: pointer;
   border-radius: 4px;
-  font-family: "Aileron";
 }
 
 .button:hover{
@@ -203,9 +202,4 @@ a {
 .leftdiv{
   margin-bottom: 20;
   width: 200%;
-}
-
-.description {
-  width: inherit;
- height: inherit;
 }
