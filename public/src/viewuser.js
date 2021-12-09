@@ -179,3 +179,57 @@ function updateBalance() {
         fines: total
     })
 }
+
+var modal = document.getElementById("myModal")
+var deleteEvent = document.getElementById('deleteUser')
+deleteEvent.onclick = function() {
+    modal.style.display = "block"
+}
+
+var cancel = document.getElementById('cancelDelete')
+cancel.onclick = function() {
+    closeModal()
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal()
+    }
+}
+
+function closeModal() {
+    modal.style.display = 'none'
+}
+
+var confirmDelete = document.getElementById('confirmDelete')
+confirmDelete.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    closeModal()
+
+    var loc = 'images/' + viewuserID
+    console.log(loc)
+    const ppRef = ref(storage, loc)
+    console.log('hello from after ppRef')
+    deleteObject(ppRef)
+    console.log('hello from after delete object')
+    cascadeDeleteAttendance()
+    console.log('hello from after cascade delete attendance')
+    deleteDoc(userRef)
+
+    window.location = 'usersummary.html'
+})
+
+function cascadeDeleteAttendance() {
+    var find =  query(attendRef, where('uid', '==', viewuserID))
+    let attendances = []
+    onSnapshot(find, (snapshot) => {
+        snapshot.docs.forEach((doc) => {
+            attendances.push({ id: doc.id})
+        })
+        for (var i = 0; i < attendances.length; i++) {
+            const attendDocRef = doc(db, 'attendance', attendances[i].id)
+            deleteDoc(attendDocRef)
+        }
+    })
+}

@@ -63,14 +63,26 @@
 
             <div class="buttonspacing">
                 <div>
-                    <button onclick="document.location=''" class="button">Delete User</button>
+                    <button class="button" id="deleteUser">Delete User</button>
                 </div>
                 <div class="btn2">
-                    <button onclick="document.location='edituser.html'" class="button">Edit User</button>
+                    <button class="button" id="editUser">Edit User</button>
                 </div>
             </div>
 
             <!--User details at the left-->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <p>Are you sure you want to delete this user?</p>
+                    <div class="modalbuttons">
+                        <button class='confirmDelete' id='confirmDelete'>Yes</button>
+                        <button class='cancelDelete' id='cancelDelete'>Cancel</button>
+                    </div>
+                </div>
+
+            </div>
 
             <div class="userdetails">
                 <div class="sidedetails">
