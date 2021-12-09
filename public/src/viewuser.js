@@ -1,15 +1,11 @@
 import { initializeApp } from 'firebase/app'
 import {
     getFirestore, collection, onSnapshot,
-    addDoc, deleteDoc, doc,
-    query, where,
-    orderBy, Unsubscribe,
-    getDoc, updateDoc
+    deleteDoc, doc, query, where,
+    orderBy, updateDoc
 } from 'firebase/firestore'
 import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword, signOut,
+    getAuth, signOut,
     onAuthStateChanged
 } from 'firebase/auth'
 import { 
@@ -37,6 +33,9 @@ const storage = getStorage()
 
 //global vars
 const viewuserID = sessionStorage.getItem('userID')
+
+if(viewuserID == null) {window.location='usersummary.html'}
+
 const userRef = doc(db, 'user', viewuserID)
 const attendRef = collection(db, 'attendance')
 const eventRef = collection(db, 'event')
@@ -106,6 +105,7 @@ function displayUserData(vu) {
         status = 'NOT CLEARED'
     }
 
+    document.getElementById('clickedUser').innerHTML = vu.fname + " " + vu.lname
     document.getElementById('nameuser').innerHTML = vu.fname + " " + vu.mi + ". " + vu.lname
     document.getElementById('yrlvl').innerHTML = vu.course + " - " + vu.year_level
     document.getElementById('useremail').innerHTML = vu.email
@@ -230,3 +230,10 @@ function cascadeDeleteAttendance() {
         }
     })
 }
+
+document.getElementById('editUser').addEventListener('click', (e) => {
+    e.preventDefault()
+
+    sessionStorage.setItem('userID', viewuserID)
+    window.location = 'edituser.html'
+})
