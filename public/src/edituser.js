@@ -3,18 +3,15 @@ import {
     getFirestore, collection, onSnapshot,
     addDoc, deleteDoc, doc,
     query, where,
-    orderBy, Unsubscribe,
-    getDoc, updateDoc
+    orderBy, updateDoc
 } from 'firebase/firestore'
 import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword, signOut,
+    getAuth, signOut,
     onAuthStateChanged
 } from 'firebase/auth'
 import { 
     getStorage, ref, 
-    getDownloadURL, deleteObject
+    getDownloadURL
 } from "firebase/storage"
 
 const firebaseConfig = {
@@ -61,6 +58,17 @@ onAuthStateChanged(auth, (user) => {
     else {
         window.location = 'index.html'
     }
+})
+
+const logoutButton = document.querySelector('.lobtn')
+logoutButton.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            window.location = 'index.html'
+        })
+        .catch(err => {
+            console.log(err)
+        })
 })
 
 function getProfileImageUrl(destination, ID) {

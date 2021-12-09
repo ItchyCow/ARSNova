@@ -112,8 +112,15 @@ function displayUserData(vu) {
         type = 'Regular'
     }
 
+    let midin
+    if (vu.mi == '') {
+        midin = ' '
+    } else {
+        midin = ' ' + vu.mi + '. '
+    }
+
     document.getElementById('clickedUser').innerHTML = vu.fname + " " + vu.lname
-    document.getElementById('nameuser').innerHTML = vu.fname + " " + vu.mi + ". " + vu.lname
+    document.getElementById('nameuser').innerHTML = vu.fname + midin + vu.lname
     document.getElementById('yrlvl').innerHTML = vu.course + " - " + vu.year_level
     document.getElementById('useremail').innerHTML = vu.email
     document.getElementById('type').innerHTML = type

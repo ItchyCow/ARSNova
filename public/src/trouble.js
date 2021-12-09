@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import { initializeApp } from 'firebase/app'
 import {
     getAuth, sendPasswordResetEmail
@@ -19,7 +20,39 @@ initializeApp(firebaseConfig)
 //init services
 const auth = getAuth()
 
+const modal = document.getElementById('myModal')
+
 const emailReset = document.querySelector('.inptstuff')
 emailReset.addEventListener('submit', (e) => {
-    sendPasswordResetEmail(auth, emailReset.email.value)    
+    e.preventDefault()
+    
+    let flag = true
+    sendPasswordResetEmail(auth, emailReset.email.value)
+        .catch((err) => {
+            if (err.code === 'auth/user-not-found') {
+                flag = false
+                displayMissing()
+                emailReset.reset()
+            }
+        })
+        .then(() => {
+            if(flag) {
+                goBack()
+            }
+        })
 })
+
+function displayMissing() {
+    document.getElementById('incorrect').innerHTML = "Email not found. Please double-check your email."
+}
+
+async function goBack() {
+    modal.style.display = 'block'
+    clearMissing()
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    window.location = 'index.html'
+}
+
+function clearMissing() {
+    document.getElementById('incorrect').innerHTML = ''
+}

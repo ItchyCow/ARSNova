@@ -47,7 +47,6 @@ onAuthStateChanged(auth, (user) => {
     }
     else {
         window.location = 'index.html'
-        console.log('user not signed in')
     }
 })
 
@@ -55,7 +54,6 @@ const logoutButton = document.querySelector('.lobtn')
 logoutButton.addEventListener('click', () => {
     signOut(auth)
         .then(() => {
-            console.log('user signed out');
             window.location = 'index.html'
         })
         .catch(err => {

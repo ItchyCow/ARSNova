@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="stylesheets/boxnbg.css">
         <link rel="stylesheet" href="stylesheets/trouble.css">
+        <link rel="shortcut icon" href="resources/icons/head logo.png" />
     </head>
 
     <body>
@@ -19,18 +20,23 @@
                 <p class="header">Trouble Logging In?</p>
                 <p class="subtext">Enter your email or username and we'll send you a link<br>to get back into your account.</p>
 
-                <form class="inptstuff" action="index.html" method="post">
+                <form class="inptstuff">
 
                     <input type="text" placeholder="Email" name="email" required>
                     <button type="submit">Send Login Link</button>
                 </form>
-
-                <div class="altlogin">
-
-                    <p><span class="gl1"></span>Or Sign In Using<span class="gl2"></span></p>
-                    <a href=""><img src="resources/images/google.png" style="height: 60px; width: 60px;"></a>
-                </div>
+                <div id="incorrect" class="errmsg"></div>
             </div>
+        </div>
+        
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <p>Email Sent!</p>
+            </div>
+        
         </div>
 
         <script src='bundles/trouble.js'></script>
