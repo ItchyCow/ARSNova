@@ -233,7 +233,7 @@ a {
 
 .sidedetails{
   float: left;
-  width: 350px;
+  width: 340px;
   height: 700px;
   padding-top: 50;
   line-height: 1;
@@ -241,6 +241,10 @@ a {
 
 .sidedetails h1 {
   font-size: 25px;
+}
+
+.sidedetails p {
+  line-height: 20px;
 }
 
 .userdetails {
@@ -272,6 +276,7 @@ a {
 /*User Table*/
 .container {
   margin-top: 60px;
+  margin-left: 10px;
   width: 75%;
   height: 100%;
   overflow: scroll;
@@ -294,6 +299,16 @@ colgroup .attendance {
 .usertable th {
 	text-align: left;
   font-size: 25px;
+}
+
+tr {
+  line-height: 25px;
+  text-align: left;
+}
+
+td {
+  line-height: 25px;
+  font-size: 18px;
 }
 
 .container::-webkit-scrollbar {

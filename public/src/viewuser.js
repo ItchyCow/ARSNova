@@ -36,9 +36,14 @@ const auth = getAuth()
 const storage = getStorage()
 
 //global vars
-var viewuserID = sessionStorage.getItem('userID')
+const viewuserID = sessionStorage.getItem('userID')
 const userRef = doc(db, 'user', viewuserID)
+const attendRef = collection(db, 'attendance')
+const eventRef = collection(db, 'event')
+const attendQ = query(attendRef, where('uid', '==', viewuserID))
 var userID
+var presentEvents = []
+var fines = []
 
 //firebase functions
 onAuthStateChanged(auth, (user) => {
@@ -62,6 +67,27 @@ onSnapshot(userRef, (doc) => {
     getProfileImageUrl('view_pp', viewuserID)
 })
 
+onSnapshot(attendQ, (snapshot) => {
+    presentEvents = []
+
+    snapshot.docs.forEach((doc) => {
+        presentEvents.push({ id: doc.data().event_id})
+    })
+
+    getAllEvents()
+})
+
+const logoutButton = document.querySelector('.lobtn')
+logoutButton.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            window.location = 'index.html'
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
 //customfunctions
 function getProfileImageUrl(destination, ID) {
     var location = "images/" + ID
@@ -81,11 +107,75 @@ function displayUserData(vu) {
     }
 
     document.getElementById('nameuser').innerHTML = vu.fname + " " + vu.mi + ". " + vu.lname
-    document.getElementById('yrlvl').innerHTML = vu.course + "-" + vu.year_level
+    document.getElementById('yrlvl').innerHTML = vu.course + " - " + vu.year_level
     document.getElementById('useremail').innerHTML = vu.email
     document.getElementById('type').innerHTML = vu.type
     document.getElementById('bio').innerHTML = vu.bio
     document.getElementById('incentives').innerHTML = vu.incentives
     document.getElementById('balance').innerHTML = balance
     document.getElementById('status').innerHTML = status
+}
+
+function getAllEvents() {
+    const eventQ = query(eventRef, orderBy('name', 'asc'))
+    onSnapshot(eventQ, (snapshot) => {
+        fines = []
+        let events = []
+        snapshot.docs.forEach((doc) => {
+            events.push({ ...doc.data()})
+            fines.push({ id: doc.id, fine: doc.data().fine})
+        })
+        checkAttendance(events)
+    })
+    
+    
+}
+
+function checkAttendance(events) {
+    clearTable()
+    for (var i = 0; i < events.length; i++) {
+        displayAttendance(events[i])
+    }
+    updateBalance()
+}
+
+function displayAttendance(event) {
+    let present = 'ABSENT'
+    for(var i = 0; i < presentEvents.length; i++) {
+        if(event.qrcode == presentEvents[i].id) {
+            present = 'PRESENT'
+        }
+    }
+
+    var codeBlock = "<tr><td name='name'>" + event.name + "</td>" +
+                    "<td name='attendance'>" + present + "</td>" +
+                    "<td name='fines'>" + event.fine + "</td>"
+    document.getElementById('attendancedata').innerHTML += codeBlock
+}
+
+function clearTable() {
+    document.getElementById('attendancedata').innerHTML = ""
+}
+
+function updateBalance() {
+    let missed = []
+    for(let i = 0; i < fines.length; i++) {
+        let flag = true
+        for(let j = 0; j < presentEvents.length; j++) {
+            if(fines[i].id == presentEvents[j].id) {
+                flag = false
+            }
+        }
+        if(flag) {
+            missed[i] = fines[i].fine
+        }
+    }
+    var total = 0
+    for(let i in missed) {
+        total += missed[i]
+    }
+    
+    updateDoc(userRef, {
+        fines: total
+    })
 }
