@@ -13,7 +13,7 @@ module.exports = {
     addevent: './public/src/addevent.js',
     editevent: './public/src/editevent.js',
     viewuser: './public/src/viewuser.js',
-    edituser: './public/src/viewuser.js'
+    edituser: './public/src/edituser.js'
   },
   output: {
     path: path.resolve(__dirname, 'public/bundles'),

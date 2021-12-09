@@ -1,6 +1,8 @@
+@import url('http://fonts.cdnfonts.com/css/aileron');
+
 body {
     margin: 0;
-    font-family: "Aileron";
+    font-family: "Aileron", sans-serif;
   }  
   /*start of sidebar codes*/
 
@@ -12,6 +14,7 @@ body {
     position: fixed;
     height: 100%;
     overflow: auto;
+    z-index: 2;
   }
   
   .sidebar a {
@@ -94,6 +97,7 @@ li {
     content: '>';
     position: absolute;
     display: inline-block;
+    size: auto;
     right: 0;
     width: 2em;
     text-align: center;
@@ -142,54 +146,84 @@ a {
 /*end of breadcrumb code*/
 
 /* start of main content code*/
-  h2 {
-    margin-bottom: 0;
+  .pagesubtitle {
+    margin-top: -20px;
+    color: #96A1A8' 
   }
+
+  /* Style page content */
+.main {
+  margin-left: 270px; /* Same as the width of the sidebar */
+  padding: 2px 10px;
+  height: 250px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.titles {
+  margin-left: 10px;
+  height: 150px;
+}
+
+.content {
+  position: relative;
+  width: 1638px;
+  height: 740px;
+}
+
+.form {
+  display: inline-block;
+  margin-left: 5px;
+  width: 300px;
+  height: 100%;
+}
+
+.form div{
+  float: right;
+}
+
+.form .after {
+  margin-top: 150px;
+}
+
+.form label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.type, .incentives, .status {
+  width: 150px;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.incentives {
+  border: 0;
+  border-bottom: 2px solid #96A1A8;
+  outline: 0;
+}
+
+.type, .status {
+  border: 0;
+  border-bottom: 2px solid #96A1A8;
+  outline: 0;
+  height: 20px;
+  flex: 0 0 200px;
+}
+
+.required:after {
+  content:" *";
+  color: #00BBD1;
+}
   
-  p {
-    margin-top : 1%; 
-    padding-top:0;
-  }
-    /* Style page content */
-    .main {
-      margin-left: 270px; /* Same as the width of the sidebar */
-      padding: 2px 10px;
-    }
-    
-    /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-    @media screen and (max-height: 450px) {
-      .sidenav {padding-top: 15px;}
-      .sidenav a {font-size: 18px;}
-    }
-    
-    
-    input[type="text"]
-    {
-        border: 0;
-        border-bottom: 2px solid #96A1A8;
-        outline: 0;
-    }
-  
-    select {
-      border: 0;
-      border-bottom: 2px solid #96A1A8;
-      outline: 0;
-      height: 20px;
-      flex: 0 0 200px;
-      margin-left: 15px;
-      width: 60px
-    }
-  
-   
-  .required:after {
-    content:" *";
-    color: #00BBD1;
-  }
-  
-.button {
+.save {
   background-color: #00BBD1;
   border: none;
-  color: FCF8F6;
+  color: #FCF8F6;
   padding: 10 20 10 20;
   text-align: center;
   text-decoration: none;
@@ -197,11 +231,88 @@ a {
   cursor: pointer;
   border-radius: 4px;
   font-family: "Aileron";
-
+  position: relative;
+  margin-top: -80px;
+  margin-right: 50;
+  float: right;
 }
 
-.button:hover{
+.save:hover{
   background-color: #96A1A8;
   color: white;
 }
 /* End of Main Content Code */
+
+/* Table Code */
+.container {
+  margin-right: 20px;
+  float: right;
+  width: 74.5%;
+  height: 84%;
+  overflow-y: scroll;
+  border-bottom: 1px solid rgba(85, 85, 85, 0.2);
+}
+
+.usertable{
+  width: 100%;
+  table-layout: fixed;
+}
+
+colgroup .colevent {
+  width: 50%;
+}
+
+colgroup .colattendance {
+  width: 30%
+}
+
+.usertable th {
+	text-align: left;
+  font-size: 25px;
+}
+
+tr {
+  line-height: 25px;
+  text-align: left;
+}
+
+td {
+  line-height: 25px;
+  font-size: 18px;
+}
+
+.attendance {
+  width: 150px;
+  font-size: 18px;
+  border: 0;
+  border-bottom: 2px solid #96A1A8;
+  outline: 0;
+  height: 20px;
+  flex: 0 0 200px;
+}
+
+.container::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar Track */
+.container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Scrollbar Handle */
+.container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Scrollbar Handle on hover */
+.container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.loading_message {
+  height: 100%;
+  text-align: center;
+  font-size: 50px !important;
+}
+/* End of Table Code */

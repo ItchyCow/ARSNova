@@ -100,12 +100,19 @@ function displayToTable(user) {
     }
     balance = parseFloat(user.fines) - parseFloat(user.incentives)
 
+    let type
+    if(user.type == 'admin') {
+        type = 'Admin'
+    } else {
+        type = 'Regular'
+    }
+
     var codeBlock = "<tr><td name='lname'>" + user.lname + "</td>" +
                     "<td name='fname'>" + user.fname + "</td>" +
                     "<td name='mi'>" + user.mi + "</td>" +
                     "<td name='year'>" + user.year_level + "</td>" +
                     "<td name='course'>" + user.course + "</td>" +
-                    "<td name='type'>" + user.type + "</td>" +
+                    "<td name='type'>" + type + "</td>" +
                     "<td name='balance'>" + balance + "</td>" +
                     "<td name='status'>" + stat + "</td></tr>"
     document.getElementById('userdata').innerHTML += codeBlock

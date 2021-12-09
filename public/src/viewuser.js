@@ -34,7 +34,7 @@ const storage = getStorage()
 //global vars
 const viewuserID = sessionStorage.getItem('userID')
 
-if(viewuserID == null) {window.location='usersummary.html'}
+if(viewuserID == null) {window.location = 'usersummary.html'}
 
 const userRef = doc(db, 'user', viewuserID)
 const attendRef = collection(db, 'attendance')
@@ -105,11 +105,18 @@ function displayUserData(vu) {
         status = 'NOT CLEARED'
     }
 
+    let type
+    if (vu.type === 'admin') {
+        type = 'Admin'
+    } else {
+        type = 'Regular'
+    }
+
     document.getElementById('clickedUser').innerHTML = vu.fname + " " + vu.lname
     document.getElementById('nameuser').innerHTML = vu.fname + " " + vu.mi + ". " + vu.lname
     document.getElementById('yrlvl').innerHTML = vu.course + " - " + vu.year_level
     document.getElementById('useremail').innerHTML = vu.email
-    document.getElementById('type').innerHTML = vu.type
+    document.getElementById('type').innerHTML = type
     document.getElementById('bio').innerHTML = vu.bio
     document.getElementById('incentives').innerHTML = vu.incentives
     document.getElementById('balance').innerHTML = balance
@@ -127,8 +134,6 @@ function getAllEvents() {
         })
         checkAttendance(events)
     })
-    
-    
 }
 
 function checkAttendance(events) {
