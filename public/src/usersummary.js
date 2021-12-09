@@ -93,7 +93,7 @@ function clearTable() {
 function displayToTable(user) {
     let stat
     let balance = 0
-    if (user.availability === true) {
+    if (user.clearance_status === true) {
         stat = 'CLEARED'
     } else {
         stat = 'NOT CLEARED'

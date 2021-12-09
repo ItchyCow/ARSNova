@@ -36,10 +36,13 @@ loginForm.addEventListener('submit', (e) => {
 
     signInWithEmailAndPassword(auth, email, password)
         .catch((err) => {
-            if (err.code === 'auth/wrong-password')
+            if (err.code === 'auth/wrong-password') {
                 displayIncorrect()
-            else
+            } else if (err.code === 'auth/user-not-found') {
+                displayMissing()
+            } else {
                 console.log(err.message)
+            }
         })
         .then((cred) => {
             userID = cred.user.uid
@@ -59,6 +62,10 @@ onAuthStateChanged(auth, (user) => {
 
 function displayIncorrect() {
     document.getElementById('incorrect').innerHTML = "Sorry, your password was incorrect. Please double-check your password."
+}
+
+function displayMissing() {
+    document.getElementById('incorrect').innerHTML = "Email not found. Please double-check your email."
 }
 
 function displayNoAuth() {
