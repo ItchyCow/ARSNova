@@ -210,11 +210,8 @@ confirmDelete.addEventListener('click', (e) => {
     var loc = 'images/' + viewuserID
     console.log(loc)
     const ppRef = ref(storage, loc)
-    console.log('hello from after ppRef')
     deleteObject(ppRef)
-    console.log('hello from after delete object')
     cascadeDeleteAttendance()
-    console.log('hello from after cascade delete attendance')
     deleteDoc(userRef)
 
     window.location = 'usersummary.html'
