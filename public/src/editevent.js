@@ -34,6 +34,9 @@ const storage = getStorage()
 var userID
 var eventIDQRCode
 
+const eventID = sessionStorage.getItem('eventID')
+if(eventID == null) {window.location = 'eventsummary.html'}
+
 //firebase functions
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -79,9 +82,6 @@ const colRef = collection(db, 'event')
         event.push({ ...doc.data(), id: doc.id})
     })
 })
-
-const eventID = sessionStorage.getItem('eventID')
-
 
 var docRef = doc(db, "event", eventID)
 getDoc(docRef)

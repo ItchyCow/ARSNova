@@ -225,8 +225,9 @@ confirmDelete.addEventListener('click', (e) => {
     deleteObject(ppRef)
     cascadeDeleteAttendance()
     deleteDoc(userRef)
-
-    window.location = 'usersummary.html'
+        .then(() => {
+            window.location = 'usersummary.html'
+        })
 })
 
 function cascadeDeleteAttendance() {

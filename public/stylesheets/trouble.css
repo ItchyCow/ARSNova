@@ -73,8 +73,9 @@ button { /*design*/
     background-color: #fefefe;
     text-align: center;
     color: black !important;
-    margin: auto; /* 15% from the top and centered */
+    margin: 21% auto; /* 15% from the top and centered */
     padding: 20px;
     border-radius: 10px;
     width: 10%;
+    font-weight: 900;
 }
